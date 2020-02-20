@@ -8,7 +8,7 @@ const APP = {
 class App {
 
 	constructor() {
-		console.log(`${APP.NAME} ${APP.VERSION}, © ${APP.CREATION_DATE} ${APP.AUTHOR}`);
+		//console.log(`${APP.NAME} ${APP.VERSION}, © ${APP.CREATION_DATE} ${APP.AUTHOR}`);
 
 		var origin = [480, 300], j = 10, scale = 20, scatter = [], yLine = [], xGrid = [], beta = 0, alpha = 0, key = function (d) { return d.id; }, startAngle = Math.PI / 4;
 		var svg = d3.select('svg').call(d3.drag().on('drag', dragged).on('start', dragStart).on('end', dragEnd)).append('g');
@@ -141,6 +141,7 @@ class App {
 				point3d(scatter),
 				yScale3d([yLine])
 			];
+
 			processData(data, 1000);
 		}
 
