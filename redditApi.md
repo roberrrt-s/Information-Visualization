@@ -10,4 +10,6 @@ Password: 40InfoVis
   (more Reddit accounts can be added as a developer, head to https://old.reddit.com/prefs/apps/)  
     
 Secret Access Key: eK59n4IC4WcVAYvGAAooxlOlmhQ 
-Access Key ID: kh7fIqiKp5aLpg
+Access Key ID: kh7fIqiKp5aLpg  
+  
+  (see src/scripts/retriever.py for a quick example in Python of how to retrieve a list of all subscribed subreddits)
