@@ -9,5 +9,5 @@ Password: 40InfoVis
   
   (more Reddit accounts can be added as a developer, head to https://old.reddit.com/prefs/apps/)  
     
-Secret Access Key: 7tyIuXSBQ8MI5ns1-ToPiBmHKDw  
-Access Key ID: jL1qLXjJRB0WJQ  
+Secret Access Key: eK59n4IC4WcVAYvGAAooxlOlmhQ 
+Access Key ID: kh7fIqiKp5aLpg
