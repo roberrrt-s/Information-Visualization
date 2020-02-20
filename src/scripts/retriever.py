@@ -22,4 +22,28 @@ def find_subscribed_subreddits():
 
     return subs
 
-print(find_subscribed_subreddits())
+
+# returns, in descending order, active subreddits based on the amount of karma earned there
+# not sure if this works, can't test bc account has no karma yet
+def get_subs_karma():
+
+    subreddits = reddit.user.karma()
+    subs = []
+
+    for subreddit in subreddits:
+        title = subreddit.title
+        karma_dict = subreddits[subreddit]
+        link_karma = karma_dict[link_karma]
+        comment_karma = karma_dict[comment_karma]
+
+        dictionary = {
+            'title' : title,
+            'link_karma' : link_karma,
+            'comment_karma' : comment_karma
+        }
+
+        subs.append(dictionary)
+        
+    return subs
+
+# print(get_subs_karma())
