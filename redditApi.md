@@ -13,3 +13,9 @@ Secret Access Key: eK59n4IC4WcVAYvGAAooxlOlmhQ
 Access Key ID: kh7fIqiKp5aLpg  
   
   (see src/scripts/retriever.py for a quick example in Python of how to retrieve some info)
+  
+  
+### Database access
+infovis.cyiwbhm9yvkt.eu-west-1.rds.amazonaws.com
+admin
+RHK8jdtrMaThg3bd
