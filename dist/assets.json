@@ -1,0 +1,16 @@
+{
+  "entrypoints": {
+    "main": {
+      "js": [
+        "/scripts/vendors~main-1485776b7a3d2a64.js",
+        "/scripts/main-c142f41ca8d48ab3.js"
+      ],
+      "css": [
+        "/styles/main-c142f41ca8d48ab3.css"
+      ]
+    }
+  },
+  "main.css": "/styles/main-c142f41ca8d48ab3.css",
+  "main.js": "/scripts/main-c142f41ca8d48ab3.js",
+  "vendors~main.js": "/scripts/vendors~main-1485776b7a3d2a64.js"
+}

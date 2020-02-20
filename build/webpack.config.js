@@ -1,13 +1,12 @@
 /* eslint-disable no-process-env */
 
 const Webpack               = require('webpack');
-const CleanPlugin           = require('clean-webpack-plugin');
+const {CleanWebpackPlugin}  = require('clean-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
 const fs                    = require('fs');
 const Path                  = require('path');
 const BrowserSyncPlugin     = require('browser-sync-webpack-plugin');
-const browsersList          = fs.readFileSync(Path.join(__dirname, '.browserslistrc'), 'utf8');
 const packageInformation    = require('../package.json');
 const UglifyJsPlugin        = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin     = require('html-webpack-plugin');
@@ -26,7 +25,7 @@ const babelPresets = [
 	[
 		'@babel/preset-env',
 		{
-			'targets'           : browsersList.split('\n').join(', '),
+			'targets'           : '>0.5%',
 			'useBuiltIns'       : 'usage',
 			'corejs'            : 3,
 			// for uglify
@@ -47,7 +46,7 @@ module.exports = {
 	entry  : {
 		'main': [
 			'./styles/main.scss',
-			'./scripts/Main.js'
+			'./scripts/global.js'
 		]
 	},
 	target: 'web',
@@ -78,10 +77,6 @@ module.exports = {
 	],
 	module: {
 		rules: [
-			{
-				test  : /\.hbs$/,
-				loader: 'handlebars-loader'
-			},
 			{
 				test: /\.css$/,
 				use : [
@@ -165,7 +160,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: '../views/index.hbs'
+			template: '../src/index.html'
 		}),
 		new Webpack.DefinePlugin({
 			'PACKAGE': {
@@ -178,14 +173,14 @@ module.exports = {
 				'PRODUCTION'   : PRODUCTION
 			}
 		}),
-		// new BrowserSyncPlugin({
-		// 	open       : false,
-		// 	port       : 3001,
-		// 	proxy      : 'server:3000',
-		// 	reloadDelay: 2000
-		// }),
-		new CleanPlugin({
-			cleanStaleWebpackAssets: false
+		new BrowserSyncPlugin({
+			open       : false,
+			port       : 3001,
+			proxy      : 'server:3000',
+			reloadDelay: 2000
+		}),
+		new CleanWebpackPlugin({
+       		cleanAfterEveryBuildPatterns: ['dist']
 		}),
 		new MiniCssExtractPlugin({
 			filename: `styles/${HASH_BUNDLE}.css`
