@@ -46,7 +46,7 @@ module.exports = {
 	entry  : {
 		'main': [
 			'./styles/main.scss',
-			'./scripts/global.js'
+			'./scripts/global.js',
 		]
 	},
 	target: 'web',

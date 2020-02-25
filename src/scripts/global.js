@@ -1,3 +1,5 @@
+import json from '../resources/datalinks.json'
+
 const APP = {
 	NAME: 'InfoViz 2020 University of Amsterdam concept',
 	VERSION: '1.0.0',
@@ -8,171 +10,68 @@ const APP = {
 class App {
 
 	constructor() {
-		//console.log(`${APP.NAME} ${APP.VERSION}, © ${APP.CREATION_DATE} ${APP.AUTHOR}`);
+		createForceLayout(json.nodes, json.links)
+		function createForceLayout(nodes, edges) {
+			var roleScale = d3.scaleOrdinal()
+				.domain(["contractor", "employee", "manager"])
+				.range(["#75739F", "#41A368", "#FE9922"])
 
-		var origin = [480, 300], j = 10, scale = 20, scatter = [], yLine = [], xGrid = [], beta = 0, alpha = 0, key = function (d) { return d.id; }, startAngle = Math.PI / 4;
-		var svg = d3.select('svg').call(d3.drag().on('drag', dragged).on('start', dragStart).on('end', dragEnd)).append('g');
-		var color = d3.scaleOrdinal(d3.schemeCategory20);
-		var mx, my, mouseX, mouseY;
+			var nodeHash = nodes.reduce((hash, node) => {
+			hash[node.id] = node;
+				return hash;
+			}, {})
 
-		var grid3d = d3._3d()
-			.shape('GRID', 20)
-			.origin(origin)
-			.rotateY(startAngle)
-			.rotateX(-startAngle)
-			.scale(scale);
+			edges.forEach(edge => {
+				edge.weight = parseInt(edge.weight)
+				edge.source = nodeHash[edge.source]
+				edge.target = nodeHash[edge.target]
+			})
 
-		var point3d = d3._3d()
-			.x(function (d) { return d.x; })
-			.y(function (d) { return d.y; })
-			.z(function (d) { return d.z; })
-			.origin(origin)
-			.rotateY(startAngle)
-			.rotateX(-startAngle)
-			.scale(scale);
+			var linkForce = d3.forceLink()
 
-		var yScale3d = d3._3d()
-			.shape('LINE_STRIP')
-			.origin(origin)
-			.rotateY(startAngle)
-			.rotateX(-startAngle)
-			.scale(scale);
+			var simulation = d3.forceSimulation()
+				.force("charge", d3.forceManyBody().strength(-40))
+				.force("center", d3.forceCenter().x(300).y(300))
+				.force("link", linkForce)
+				.nodes(nodes)
+				.on("tick", forceTick)
 
-		function processData(data, tt) {
+			simulation.force("link").links(edges)
 
-			/* ----------- GRID ----------- */
-
-			var xGrid = svg.selectAll('path.grid').data(data[0], key);
-
-			xGrid
+			d3.select("svg").selectAll("line.link")
+				.data(edges, d => `${d.source.id}-${d.target.id}`)
 				.enter()
-				.append('path')
-				.attr('class', '_3d grid')
-				.merge(xGrid)
-				.attr('stroke', 'black')
-				.attr('stroke-width', 0.3)
-				.attr('fill', function (d) { return d.ccw ? 'lightgrey' : '#717171'; })
-				.attr('fill-opacity', 0.9)
-				.attr('d', grid3d.draw);
+				.append("line")
+				.attr("class", "link")
+				.style("opacity", .5)
+				.style("stroke-width", d => d.weight);
 
-			xGrid.exit().remove();
-
-			/* ----------- POINTS ----------- */
-
-			var points = svg.selectAll('circle').data(data[1], key);
-
-			points
+			var nodeEnter = d3.select("svg").selectAll("g.node")
+				.data(nodes, d => d.id)
 				.enter()
-				.append('circle')
-				.attr('class', '_3d')
-				.attr('opacity', 0)
-				.attr('cx', posPointX)
-				.attr('cy', posPointY)
-				.merge(points)
-				.transition().duration(tt)
-				.attr('r', 3)
-				.attr('stroke', function (d) { return d3.color(color(d.id)).darker(3); })
-				.attr('fill', function (d) { return color(d.id); })
-				.attr('opacity', 1)
-				.attr('cx', posPointX)
-				.attr('cy', posPointY);
+				.append("g")
+				.attr("class", "node");
+			nodeEnter.append("circle")
+				.attr("r", 5)
+				.style("fill", d => roleScale(d.role))
+			nodeEnter.append("text")
+				.style("text-anchor", "middle")
+				.attr("y", 15)
+				.text(d => d.id);
 
-			points.exit().remove();
-
-			/* ----------- y-Scale ----------- */
-
-			var yScale = svg.selectAll('path.yScale').data(data[2]);
-
-			yScale
-				.enter()
-				.append('path')
-				.attr('class', '_3d yScale')
-				.merge(yScale)
-				.attr('stroke', 'black')
-				.attr('stroke-width', .5)
-				.attr('d', yScale3d.draw);
-
-			yScale.exit().remove();
-
-			/* ----------- y-Scale Text ----------- */
-
-			var yText = svg.selectAll('text.yText').data(data[2][0]);
-
-			yText
-				.enter()
-				.append('text')
-				.attr('class', '_3d yText')
-				.attr('dx', '.3em')
-				.merge(yText)
-				.each(function (d) {
-					d.centroid = { x: d.rotated.x, y: d.rotated.y, z: d.rotated.z };
-				})
-				.attr('x', function (d) { return d.projected.x; })
-				.attr('y', function (d) { return d.projected.y; })
-				.text(function (d) { return d[1] <= 0 ? d[1] : ''; });
-
-			yText.exit().remove();
-
-			d3.selectAll('._3d').sort(d3._3d().sort);
-		}
-
-		function posPointX(d) {
-			return d.projected.x;
-		}
-
-		function posPointY(d) {
-			return d.projected.y;
-		}
-
-		function init() {
-			var cnt = 0;
-			xGrid = [], scatter = [], yLine = [];
-			for (var z = -j; z < j; z++) {
-				for (var x = -j; x < j; x++) {
-					xGrid.push([x, 1, z]);
-					scatter.push({ x: x, y: d3.randomUniform(0, -10)(), z: z, id: 'point_' + cnt++ });
-				}
+			function forceTick() {
+				d3.selectAll("line.link")
+					.attr("x1", d => d.source.x)
+					.attr("x2", d => d.target.x)
+					.attr("y1", d => d.source.y)
+					.attr("y2", d => d.target.y)
+				d3.selectAll("g.node")
+					.attr("transform", d => `translate(${d.x},${d.y})`)
 			}
-
-			d3.range(-1, 11, 1).forEach(function (d) { yLine.push([-j, -d, -j]); });
-
-			var data = [
-				grid3d(xGrid),
-				point3d(scatter),
-				yScale3d([yLine])
-			];
-
-			processData(data, 1000);
 		}
 
-		function dragStart() {
-			mx = d3.event.x;
-			my = d3.event.y;
-		}
 
-		function dragged() {
-			mouseX = mouseX || 0;
-			mouseY = mouseY || 0;
-			beta = (d3.event.x - mx + mouseX) * Math.PI / 230;
-			alpha = (d3.event.y - my + mouseY) * Math.PI / 230 * (-1);
-			var data = [
-				grid3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(xGrid),
-				point3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(scatter),
-				yScale3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([yLine]),
-			];
-			processData(data, 0);
-		}
 
-		function dragEnd() {
-			mouseX = d3.event.x - mx + mouseX;
-			mouseY = d3.event.y - my + mouseY;
-		}
-
-		d3.selectAll('button').on('click', init);
-
-		init();
-	}
-
-};
-
+	};
+}
 const app = new App();
