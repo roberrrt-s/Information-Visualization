@@ -96,8 +96,10 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     if (
       !subreddits.includes(linkArr[i].target) &&
       linksTargetted[linkArr[i].target] != undefined &&
-      linksTargetted[linkArr[i].target].length > 1
+      linksTargetted[linkArr[i].target].length > 2
     ) {
+      console.log(linkArr[i].target, linksTargetted[linkArr[i].target])
+
       linkUsed.push({
         source: linkArr[i].source,
         target: linkArr[i].target
@@ -106,8 +108,9 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     } else if (
       !subreddits.includes(linkArr[i].source) &&
       linksTargetted[linkArr[i].source] != undefined &&
-      linksTargetted[linkArr[i].source].length > 1
+      linksTargetted[linkArr[i].source].length > 2
     ) {
+      console.log(linkArr[i].source, linksTargetted[linkArr[i].source])
       linkUsed.push({
         source: linkArr[i].source,
         target: linkArr[i].target
