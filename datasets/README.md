@@ -6,5 +6,5 @@ the subreddits on which the most crossposts have been made (both in descending o
 key: subreddit name  
 value: amount of references/posts made
   
-To create new files, just call the function you need with the amount of subreddits you want between the brackets (e.g. 
+To create new files, just call the function you need in start.py with the amount of subreddits you want between the brackets (e.g. 
 get_most_ref_subs(150)).
