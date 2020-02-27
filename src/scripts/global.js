@@ -1,4 +1,4 @@
-import graph from '../resources/datalinks-v2.json'
+import graph from '../resources/datalinks-v4.json'
 
 const APP = {
 	NAME: 'InfoViz 2020 University of Amsterdam concept',
@@ -71,6 +71,9 @@ class App {
 		// 	}
 		// }
 
+		document.querySelector('svg').setAttribute('height', window.innerHeight);
+		document.querySelector('svg').setAttribute('width', window.innerWidth);
+
 
 		var svg = d3.select("svg"),
 			width = +svg.attr("width"),
@@ -80,7 +83,7 @@ class App {
 
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
-			.force("charge", d3.forceManyBody())
+			.force("charge", d3.forceManyBody().distanceMax(100).distanceMin(25))
 			.force("center", d3.forceCenter(width / 2, height / 2));
 
 		var link = svg.append("g")
