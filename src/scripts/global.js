@@ -20,6 +20,14 @@ class App {
 
 		var color = d3.scaleOrdinal(d3.schemeCategory20);
 
+		var tooltip = d3.select("body")
+			.append("div")
+			.attr("class", "tooltip")
+			.style("position", "absolute")
+			.style("z-index", "10")
+			// .style("visibility", "hidden")
+			.style("visibility", "hidden");
+
 		//https://github.com/d3/d3-force USE force/distanceMax etc
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
@@ -45,7 +53,25 @@ class App {
 			.call(d3.drag()
 				.on("start", dragstarted)
 				.on("drag", dragged)
-				.on("end", dragended));
+				.on("end", dragended))
+				.on("mouseover", function(d){
+					tooltip
+						.style("opacity", 0)
+						.style("visibility", "visible")
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'line 2')
+						.transition()
+						.duration(130)
+						.style("opacity", 1)
+					})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mouseout", function(){
+					tooltip
+						.transition()
+						.duration(130)
+						.style("opacity", 0)
+						// .style("visibility", "hidden")
+						;});
+
 
 		var lables = node.append("text")
 			.text(function(d) {
