@@ -18,6 +18,15 @@ var subreddits = [
   'wow'
 ]
 
+var categories;
+
+fs.readFile('../src/resources/subreddit_topics.json', function read (err, data) {
+  if (err) {
+    throw err
+  }
+  categories = JSON.parse(data);
+})
+
 fs.readFile('../src/resources/datalinks.json', function read (err, data) {
   if (err) {
     throw err
@@ -26,7 +35,13 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
   for (var i = 0; i < subreddits.length; i++) {
     var node = {
       id: subreddits[i],
-      name: subreddits[i]
+      name: subreddits[i],
+      group: 'Other'
+    }
+    for(var y = 0; y < categories.length; y++){
+      if(subreddits[i].toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
+        node.group = categories[y].CATEGORY;
+      }
     }
     nodeArr.push(node)
     nodesUsed.push(subreddits[i])
@@ -40,7 +55,13 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
           //NOT INCLUDED YET? -> ADD TO NODEUSED
           var node = {
             id: data.links[i].target,
-            name: data.links[i].target
+            name: data.links[i].target,
+            group: 'Other'
+          }
+          for(var y = 0; y < categories.length; y++){
+            if(data.links[i].target.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
+              node.group = categories[y].CATEGORY;
+            }
           }
           nodesUsed.push(data.links[i].target)
           nodeArr.push(node)
@@ -66,7 +87,13 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
           //NOT INCLUDED YET? -> ADD TO NODEUSED
           var node = {
             id: data.links[i].source,
-            name: data.links[i].source
+            name: data.links[i].source,
+            group: 'Other'
+          }
+          for(var y = 0; y < categories.length; y++){
+            if(data.links[i].source.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
+              node.group = categories[y].CATEGORY;
+            }
           }
           nodesUsed.push(data.links[i].source)
           nodeArr.push(node)
@@ -90,7 +117,6 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     }
   }
 
-  console.log(linksTargetted);
   for (var i = 0; i < linkArr.length; i++) {
 
     if (
@@ -98,7 +124,6 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
       linksTargetted[linkArr[i].target] != undefined &&
       linksTargetted[linkArr[i].target].length > 2
     ) {
-      console.log(linkArr[i].target, linksTargetted[linkArr[i].target])
 
       linkUsed.push({
         source: linkArr[i].source,
@@ -110,7 +135,6 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
       linksTargetted[linkArr[i].source] != undefined &&
       linksTargetted[linkArr[i].source].length > 2
     ) {
-      console.log(linkArr[i].source, linksTargetted[linkArr[i].source])
       linkUsed.push({
         source: linkArr[i].source,
         target: linkArr[i].target
@@ -125,7 +149,13 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     if(!nodesUsed.includes(linkUsed[i].target)){
       var node = {
         id: linkUsed[i].target,
-        name: linkUsed[i].target
+        name: linkUsed[i].target,
+        group: 'Other'
+      }
+      for(var y = 0; y < categories.length; y++){
+        if(linkUsed[i].target.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
+          node.group = categories[y].CATEGORY;
+        }
       }
       nodes.push(node);
       nodesUsed.push(linkUsed[i].target);
@@ -133,7 +163,13 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     if(!nodesUsed.includes(linkUsed[i].source)){
       var node = {
         id: linkUsed[i].source,
-        name: linkUsed[i].source
+        name: linkUsed[i].source,
+        group: 'Other'
+      }
+      for(var y = 0; y < categories.length; y++){
+        if(linkUsed[i].source.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
+          node.group = categories[y].CATEGORY;
+        }
       }
       nodes.push(node);
       nodesUsed.push(linkUsed[i].source);

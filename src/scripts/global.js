@@ -1,4 +1,4 @@
-import graph from '../resources/datalinks-v4.json'
+import graph from '../resources/datalinks-v5.json'
 
 const APP = {
 	NAME: 'InfoViz 2020 University of Amsterdam concept',
@@ -58,7 +58,7 @@ class App {
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'line 2')
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category:' + d.group)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
