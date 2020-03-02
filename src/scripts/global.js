@@ -56,6 +56,9 @@ class App {
 				.on("drag", dragged)
 				.on("end", dragended))
 				.on("mouseover", function(d){
+					node
+						.style("cursor", "pointer")
+
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
@@ -70,7 +73,7 @@ class App {
 						.transition()
 						.duration(130)
 						.style("opacity", 0)
-						// .style("visibility", "hidden")
+						.style("cursor", "pointer")
 						;});
 
 
