@@ -18,13 +18,16 @@ var subreddits = [
   'wow'
 ]
 
-var categories;
+var categories
 
-fs.readFile('../src/resources/subreddit_topics.json', function read (err, data) {
+fs.readFile('../src/resources/subreddit_topics.json', function read (
+  err,
+  data
+) {
   if (err) {
     throw err
   }
-  categories = JSON.parse(data);
+  categories = JSON.parse(data)
 })
 
 fs.readFile('../src/resources/datalinks.json', function read (err, data) {
@@ -36,12 +39,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     var node = {
       id: subreddits[i],
       name: subreddits[i],
-      group: 'Other'
-    }
-    for(var y = 0; y < categories.length; y++){
-      if(subreddits[i].toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
-        node.group = categories[y].CATEGORY;
-      }
+      group: 'Followed'
     }
     nodeArr.push(node)
     nodesUsed.push(subreddits[i])
@@ -58,9 +56,13 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
             name: data.links[i].target,
             group: 'Other'
           }
-          for(var y = 0; y < categories.length; y++){
-            if(data.links[i].target.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
-              node.group = categories[y].CATEGORY;
+
+          for (var y = 0; y < categories.length; y++) {
+            if (
+              data.links[i].target.toLowerCase() ==
+              categories[y].SUBREDDIT.toString().toLowerCase()
+            ) {
+              node.group = categories[y].CATEGORY
             }
           }
           nodesUsed.push(data.links[i].target)
@@ -74,8 +76,11 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
 
         linkArr.push(link)
 
-        if (linksTargetted[data.links[i].target] && Array.isArray(linksTargetted[data.links[i].target])) {
-          if(!linksTargetted[data.links[i].target].includes(subreddits[y])){
+        if (
+          linksTargetted[data.links[i].target] &&
+          Array.isArray(linksTargetted[data.links[i].target])
+        ) {
+          if (!linksTargetted[data.links[i].target].includes(subreddits[y])) {
             linksTargetted[data.links[i].target].push(subreddits[y])
           }
         } else {
@@ -90,9 +95,12 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
             name: data.links[i].source,
             group: 'Other'
           }
-          for(var y = 0; y < categories.length; y++){
-            if(data.links[i].source.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
-              node.group = categories[y].CATEGORY;
+          for (var y = 0; y < categories.length; y++) {
+            if (
+              data.links[i].source.toLowerCase() ==
+              categories[y].SUBREDDIT.toString().toLowerCase()
+            ) {
+              node.group = categories[y].CATEGORY
             }
           }
           nodesUsed.push(data.links[i].source)
@@ -106,8 +114,11 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
 
         linkArr.push(link)
 
-        if (linksTargetted[data.links[i].source] && Array.isArray(linksTargetted[data.links[i].source])) {
-          if(!linksTargetted[data.links[i].source].includes(subreddits[y])){
+        if (
+          linksTargetted[data.links[i].source] &&
+          Array.isArray(linksTargetted[data.links[i].source])
+        ) {
+          if (!linksTargetted[data.links[i].source].includes(subreddits[y])) {
             linksTargetted[data.links[i].source].push(subreddits[y])
           }
         } else {
@@ -118,13 +129,11 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
   }
 
   for (var i = 0; i < linkArr.length; i++) {
-
     if (
       !subreddits.includes(linkArr[i].target) &&
       linksTargetted[linkArr[i].target] != undefined &&
       linksTargetted[linkArr[i].target].length > 2
     ) {
-
       linkUsed.push({
         source: linkArr[i].source,
         target: linkArr[i].target
@@ -143,45 +152,58 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     }
   }
 
-  var nodes = [];
-  nodesUsed = [];
-  for(var i = 0; i < linkUsed.length; i++){
-    if(!nodesUsed.includes(linkUsed[i].target)){
+  var nodes = []
+  nodesUsed = []
+  for (var i = 0; i < linkUsed.length; i++) {
+    if (!nodesUsed.includes(linkUsed[i].target)) {
       var node = {
         id: linkUsed[i].target,
         name: linkUsed[i].target,
         group: 'Other'
       }
-      for(var y = 0; y < categories.length; y++){
-        if(linkUsed[i].target.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
-          node.group = categories[y].CATEGORY;
+      for (var y = 0; y < categories.length; y++) {
+        if (
+          linkUsed[i].target.toLowerCase() ==
+          categories[y].SUBREDDIT.toString().toLowerCase()
+        ) {
+          node.group = categories[y].CATEGORY
         }
       }
-      nodes.push(node);
-      nodesUsed.push(linkUsed[i].target);
+      if (subreddits.includes(linkUsed[i].target)) {
+        node.followed = true
+      } else {
+        node.followed = false
+      }
+      nodes.push(node)
+      nodesUsed.push(linkUsed[i].target)
     }
-    if(!nodesUsed.includes(linkUsed[i].source)){
+    if (!nodesUsed.includes(linkUsed[i].source)) {
       var node = {
         id: linkUsed[i].source,
         name: linkUsed[i].source,
         group: 'Other'
       }
-      for(var y = 0; y < categories.length; y++){
-        if(linkUsed[i].source.toLowerCase() == categories[y].SUBREDDIT.toString().toLowerCase()){
-          node.group = categories[y].CATEGORY;
+      for (var y = 0; y < categories.length; y++) {
+        if (
+          linkUsed[i].source.toLowerCase() ==
+          categories[y].SUBREDDIT.toString().toLowerCase()
+        ) {
+          node.group = categories[y].CATEGORY
         }
       }
-      nodes.push(node);
-      nodesUsed.push(linkUsed[i].source);
-
+      if (subreddits.includes(linkUsed[i].source)) {
+        node.followed = true
+      } else {
+        node.followed = false
+      }
+      nodes.push(node)
+      nodesUsed.push(linkUsed[i].source)
     }
   }
-
-
 
   var output = {
     nodes: nodes,
     links: linkUsed
   }
-  fs.writeFileSync('datalinks-v4.json', JSON.stringify(output))
+  fs.writeFileSync('data.json', JSON.stringify(output))
 })

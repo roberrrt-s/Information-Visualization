@@ -3,14 +3,14 @@
     "main": {
       "js": [
         "/scripts/vendors~main-a8d0e894042d7714.js",
-        "/scripts/main-5cdbd35649f5042f.js"
+        "/scripts/main-348fe8fc79a233c7.js"
       ],
       "css": [
-        "/styles/main-5cdbd35649f5042f.css"
+        "/styles/main-348fe8fc79a233c7.css"
       ]
     }
   },
-  "main.css": "/styles/main-5cdbd35649f5042f.css",
-  "main.js": "/scripts/main-5cdbd35649f5042f.js",
+  "main.css": "/styles/main-348fe8fc79a233c7.css",
+  "main.js": "/scripts/main-348fe8fc79a233c7.js",
   "vendors~main.js": "/scripts/vendors~main-a8d0e894042d7714.js"
 }

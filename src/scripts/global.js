@@ -1,4 +1,4 @@
-import graph from '../resources/datalinks-v5.json'
+import graph from '../resources/data.json'
 
 const APP = {
 	NAME: 'InfoViz 2020 University of Amsterdam concept',
