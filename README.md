@@ -1,11 +1,12 @@
 # Information-Visualization
 ## Idea:
 - Connect to reddit account to get all followed subreddits using API
-- Colorcode the followed subreddits
 - Calculate the recommended subreddits based on amount of links from followed subreddits
-- Colorcode the recommended subreddits
+- Connect topic dataset to list of subreddits
+- Colorcode the recommended subreddits based on topic
 - Allow the user to connect an additional reddit account to create another bubble
 - Merge the two bubbles to show overlapping subreddits of interest between the two users
+
 Extra:
 - Calculate average sentiment of subreddits based on all links from followed subreddits
 - Use 3d view to show sentiment?
