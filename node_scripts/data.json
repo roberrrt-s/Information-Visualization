@@ -4,1566 +4,2142 @@
       "id": "askreddit",
       "name": "askreddit",
       "group": "General",
+      "weight": 7,
       "followed": true
     },
-    { "id": "195", "name": "195", "group": "General", "followed": false },
+    {
+      "id": "195",
+      "name": "195",
+      "group": "General",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "explainlikeimfive",
       "name": "explainlikeimfive",
       "group": "General",
+      "weight": 4,
       "followed": true
     },
     {
       "id": "nintendo",
       "name": "nintendo",
       "group": "Gaming",
+      "weight": 1,
       "followed": true
     },
     {
       "id": "2007scape",
       "name": "2007scape",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "leagueoflegends",
       "name": "leagueoflegends",
       "group": "Gaming",
+      "weight": 4,
       "followed": true
     },
-    { "id": "wow", "name": "wow", "group": "Gaming", "followed": true },
+    {
+      "id": "wow",
+      "name": "wow",
+      "group": "Gaming",
+      "weight": 2,
+      "followed": true
+    },
     {
       "id": "3dprinting",
       "name": "3dprinting",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
-    { "id": "videos", "name": "videos", "group": "General", "followed": true },
-    { "id": "3ds", "name": "3ds", "group": "Gaming", "followed": false },
+    {
+      "id": "videos",
+      "name": "videos",
+      "group": "General",
+      "weight": 4,
+      "followed": true
+    },
+    {
+      "id": "3ds",
+      "name": "3ds",
+      "group": "Gaming",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "smashbros",
       "name": "smashbros",
       "group": "Gaming",
+      "weight": 4,
       "followed": true
     },
     {
       "id": "actuallesbians",
       "name": "actuallesbians",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
-    { "id": "adhd", "name": "adhd", "group": "Lifestyle", "followed": false },
+    {
+      "id": "adhd",
+      "name": "adhd",
+      "group": "Lifestyle",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "programmerhumor",
       "name": "programmerhumor",
       "group": "Technology",
+      "weight": 1,
       "followed": true
     },
     {
       "id": "adviceanimals",
       "name": "adviceanimals",
       "group": "General",
+      "weight": 6,
       "followed": false
     },
     {
       "id": "againstmensrights",
       "name": "againstmensrights",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "agitation",
       "name": "agitation",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "alienblue",
       "name": "alienblue",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
-    { "id": "ama", "name": "ama", "group": "General", "followed": false },
+    {
+      "id": "ama",
+      "name": "ama",
+      "group": "General",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "anarchism",
       "name": "anarchism",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "anarcho_capitalism",
       "name": "anarcho_capitalism",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "anime",
       "name": "anime",
       "group": "Entertainment",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "anticonsumption",
       "name": "anticonsumption",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "argentina",
       "name": "argentina",
       "group": "Locations",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "askscience",
       "name": "askscience",
       "group": "Science",
+      "weight": 3,
       "followed": true
     },
     {
       "id": "askhistorians",
       "name": "askhistorians",
       "group": "Social Science and Humanities",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "askmoderators",
       "name": "askmoderators",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "askphilosophy",
       "name": "askphilosophy",
       "group": "Social Science and Humanities",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "asksciencefiction",
       "name": "asksciencefiction",
       "group": "Entertainment",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "asksocialscience",
       "name": "asksocialscience",
       "group": "Social Science and Humanities",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "asktechnology",
       "name": "asktechnology",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "askwomen",
       "name": "askwomen",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "asoiaf",
       "name": "asoiaf",
       "group": "Entertainment",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "atheism",
       "name": "atheism",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "australia",
       "name": "australia",
       "group": "Locations",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "aviation",
       "name": "aviation",
       "group": "Technology",
+      "weight": 4,
       "followed": false
     },
-    { "id": "aww", "name": "aww", "group": "Lifestyle", "followed": false },
+    {
+      "id": "aww",
+      "name": "aww",
+      "group": "Lifestyle",
+      "weight": 6,
+      "followed": false
+    },
     {
       "id": "babybumps",
       "name": "babybumps",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "bandnames",
       "name": "bandnames",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "basicincome",
       "name": "basicincome",
       "group": "Business",
+      "weight": 4,
       "followed": false
     },
-    { "id": "bestof", "name": "bestof", "group": "Meta", "followed": false },
+    {
+      "id": "bestof",
+      "name": "bestof",
+      "group": "Meta",
+      "weight": 10,
+      "followed": false
+    },
     {
       "id": "bitcoin",
       "name": "bitcoin",
       "group": "Technology",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "books",
       "name": "books",
       "group": "Entertainment",
+      "weight": 6,
       "followed": false
     },
     {
       "id": "buildapc",
       "name": "buildapc",
       "group": "Technology",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "cars",
       "name": "cars",
       "group": "Hobbies and Interests",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "casualiama",
       "name": "casualiama",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "conspiracy",
       "name": "conspiracy",
       "group": "News and Politics",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "crazyideas",
       "name": "crazyideas",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
-    { "id": "creepy", "name": "creepy", "group": "General", "followed": false },
-    { "id": "cringe", "name": "cringe", "group": "General", "followed": false },
+    {
+      "id": "creepy",
+      "name": "creepy",
+      "group": "General",
+      "weight": 4,
+      "followed": false
+    },
+    {
+      "id": "cringe",
+      "name": "cringe",
+      "group": "General",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "cringepics",
       "name": "cringepics",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "dataisbeautiful",
       "name": "dataisbeautiful",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "diy",
       "name": "diy",
       "group": "Hobbies and Interests",
+      "weight": 4,
       "followed": false
     },
-    { "id": "drugs", "name": "drugs", "group": "Lifestyle", "followed": false },
-    { "id": "drunk", "name": "drunk", "group": "Lifestyle", "followed": false },
+    {
+      "id": "drugs",
+      "name": "drugs",
+      "group": "Lifestyle",
+      "weight": 4,
+      "followed": false
+    },
+    {
+      "id": "drunk",
+      "name": "drunk",
+      "group": "Lifestyle",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "earthporn",
       "name": "earthporn",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "eldertrees",
       "name": "eldertrees",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
-    { "id": "eve", "name": "eve", "group": "Gaming", "followed": false },
+    {
+      "id": "eve",
+      "name": "eve",
+      "group": "Gaming",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "exmormon",
       "name": "exmormon",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "fantheories",
       "name": "fantheories",
       "group": "Entertainment",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "findareddit",
       "name": "findareddit",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "fitness",
       "name": "fitness",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "flying",
       "name": "flying",
       "group": "Hobbies and Interests",
+      "weight": 3,
       "followed": false
     },
-    { "id": "food", "name": "food", "group": "Lifestyle", "followed": false },
+    {
+      "id": "food",
+      "name": "food",
+      "group": "Lifestyle",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "frugal",
       "name": "frugal",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
-    { "id": "funny", "name": "funny", "group": "General", "followed": false },
+    {
+      "id": "funny",
+      "name": "funny",
+      "group": "General",
+      "weight": 7,
+      "followed": false
+    },
     {
       "id": "futurology",
       "name": "futurology",
       "group": "Science",
+      "weight": 3,
       "followed": false
     },
-    { "id": "games", "name": "games", "group": "Gaming", "followed": false },
-    { "id": "gaming", "name": "gaming", "group": "Gaming", "followed": false },
+    {
+      "id": "games",
+      "name": "games",
+      "group": "Gaming",
+      "weight": 6,
+      "followed": false
+    },
+    {
+      "id": "gaming",
+      "name": "gaming",
+      "group": "Gaming",
+      "weight": 8,
+      "followed": false
+    },
     {
       "id": "getmotivated",
       "name": "getmotivated",
       "group": "Lifestyle",
+      "weight": 5,
       "followed": false
     },
-    { "id": "gifs", "name": "gifs", "group": "General", "followed": false },
+    {
+      "id": "gifs",
+      "name": "gifs",
+      "group": "General",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "harrypotter",
       "name": "harrypotter",
       "group": "Entertainment",
+      "weight": 4,
       "followed": false
     },
-    { "id": "help", "name": "help", "group": "Meta", "followed": false },
+    {
+      "id": "help",
+      "name": "help",
+      "group": "Meta",
+      "weight": 6,
+      "followed": false
+    },
     {
       "id": "history",
       "name": "history",
       "group": "Social Science and Humanities",
+      "weight": 4,
       "followed": false
     },
-    { "id": "iama", "name": "iama", "group": "General", "followed": false },
+    {
+      "id": "iama",
+      "name": "iama",
+      "group": "General",
+      "weight": 8,
+      "followed": false
+    },
     {
       "id": "ideasfortheadmins",
       "name": "ideasfortheadmins",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "imgoingtohellforthis",
       "name": "imgoingtohellforthis",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "interestingasfuck",
       "name": "interestingasfuck",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
-    { "id": "islam", "name": "islam", "group": "Lifestyle", "followed": false },
-    { "id": "italy", "name": "italy", "group": "Locations", "followed": false },
-    { "id": "japan", "name": "japan", "group": "Locations", "followed": false },
-    { "id": "jokes", "name": "jokes", "group": "General", "followed": false },
+    {
+      "id": "islam",
+      "name": "islam",
+      "group": "Lifestyle",
+      "weight": 4,
+      "followed": false
+    },
+    {
+      "id": "italy",
+      "name": "italy",
+      "group": "Locations",
+      "weight": 5,
+      "followed": false
+    },
+    {
+      "id": "japan",
+      "name": "japan",
+      "group": "Locations",
+      "weight": 4,
+      "followed": false
+    },
+    {
+      "id": "jokes",
+      "name": "jokes",
+      "group": "General",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "justiceporn",
       "name": "justiceporn",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "languagelearning",
       "name": "languagelearning",
       "group": "Hobbies and Interests",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "learnuselesstalents",
       "name": "learnuselesstalents",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "lifeprotips",
       "name": "lifeprotips",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "makeupaddiction",
       "name": "makeupaddiction",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "mensrights",
       "name": "mensrights",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "mildlyinfuriating",
       "name": "mildlyinfuriating",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "mildlyinteresting",
       "name": "mildlyinteresting",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "military",
       "name": "military",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "morbidreality",
       "name": "morbidreality",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "movies",
       "name": "movies",
       "group": "Entertainment",
+      "weight": 4,
       "followed": false
     },
-    { "id": "music", "name": "music", "group": "Music", "followed": false },
+    {
+      "id": "music",
+      "name": "music",
+      "group": "Music",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "news",
       "name": "news",
       "group": "News and Politics",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "nostupidquestions",
       "name": "nostupidquestions",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "offmychest",
       "name": "offmychest",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "outoftheloop",
       "name": "outoftheloop",
       "group": "General",
+      "weight": 8,
       "followed": false
     },
     {
       "id": "parenting",
       "name": "parenting",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "pcmasterrace",
       "name": "pcmasterrace",
       "group": "Gaming",
+      "weight": 8,
       "followed": false
     },
     {
       "id": "personalfinance",
       "name": "personalfinance",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
-    { "id": "pics", "name": "pics", "group": "General", "followed": false },
+    {
+      "id": "pics",
+      "name": "pics",
+      "group": "General",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "politic",
       "name": "politic",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "politicaldiscussion",
       "name": "politicaldiscussion",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "politics",
       "name": "politics",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "psychology",
       "name": "psychology",
       "group": "Social Science and Humanities",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "psychonaut",
       "name": "psychonaut",
       "group": "Lifestyle",
+      "weight": 5,
       "followed": false
     },
-    { "id": "rant", "name": "rant", "group": "General", "followed": false },
+    {
+      "id": "rant",
+      "name": "rant",
+      "group": "General",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "relationships",
       "name": "relationships",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "running",
       "name": "running",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "science",
       "name": "science",
       "group": "Science",
+      "weight": 5,
       "followed": false
     },
-    { "id": "sex", "name": "sex", "group": "Lifestyle", "followed": false },
+    {
+      "id": "sex",
+      "name": "sex",
+      "group": "Lifestyle",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "shitredditsays",
       "name": "shitredditsays",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "showerthoughts",
       "name": "showerthoughts",
       "group": "General",
+      "weight": 6,
       "followed": false
     },
-    { "id": "soccer", "name": "soccer", "group": "Sports", "followed": false },
-    { "id": "space", "name": "space", "group": "Science", "followed": false },
+    {
+      "id": "soccer",
+      "name": "soccer",
+      "group": "Sports",
+      "weight": 5,
+      "followed": false
+    },
+    {
+      "id": "space",
+      "name": "space",
+      "group": "Science",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "squaredcircle",
       "name": "squaredcircle",
       "group": "Sports",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "sydney",
       "name": "sydney",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "sysadmin",
       "name": "sysadmin",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "talesfromtechsupport",
       "name": "talesfromtechsupport",
       "group": "Technology",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "technology",
       "name": "technology",
       "group": "Technology",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "teenagers",
       "name": "teenagers",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "television",
       "name": "television",
       "group": "Entertainment",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "teslamotors",
       "name": "teslamotors",
       "group": "Hobbies and Interests",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "thelastairbender",
       "name": "thelastairbender",
       "group": "Entertainment",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "theoryofreddit",
       "name": "theoryofreddit",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "theredpill",
       "name": "theredpill",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "theydidthemath",
       "name": "theydidthemath",
       "group": "General",
+      "weight": 6,
       "followed": false
     },
-    { "id": "tifu", "name": "tifu", "group": "General", "followed": false },
+    {
+      "id": "tifu",
+      "name": "tifu",
+      "group": "General",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "todayilearned",
       "name": "todayilearned",
       "group": "General",
+      "weight": 6,
       "followed": false
     },
-    { "id": "travel", "name": "travel", "group": "Travel", "followed": false },
-    { "id": "trees", "name": "trees", "group": "Lifestyle", "followed": false },
+    {
+      "id": "travel",
+      "name": "travel",
+      "group": "Travel",
+      "weight": 3,
+      "followed": false
+    },
+    {
+      "id": "trees",
+      "name": "trees",
+      "group": "Lifestyle",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "truereddit",
       "name": "truereddit",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "twoxchromosomes",
       "name": "twoxchromosomes",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "ukrainianconflict",
       "name": "ukrainianconflict",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "undelete",
       "name": "undelete",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "unexpected",
       "name": "unexpected",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "vegetarian",
       "name": "vegetarian",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "whowouldwin",
       "name": "whowouldwin",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "woahdude",
       "name": "woahdude",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "worldnews",
       "name": "worldnews",
       "group": "News and Politics",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "writingprompts",
       "name": "writingprompts",
       "group": "Hobbies and Interests",
+      "weight": 6,
       "followed": false
     },
-    { "id": "wtf", "name": "wtf", "group": "General", "followed": false },
+    {
+      "id": "wtf",
+      "name": "wtf",
+      "group": "General",
+      "weight": 6,
+      "followed": false
+    },
     {
       "id": "youshouldknow",
       "name": "youshouldknow",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "astronomy",
       "name": "astronomy",
       "group": "Science",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "astrophotography",
       "name": "astrophotography",
       "group": "Science",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "bicycling",
       "name": "bicycling",
       "group": "Hobbies and Interests",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "changemyview",
       "name": "changemyview",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "debateachristian",
       "name": "debateachristian",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "homebrewing",
       "name": "homebrewing",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "motorcycles",
       "name": "motorcycles",
       "group": "Hobbies and Interests",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "shittyaskscience",
       "name": "shittyaskscience",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "truegaming",
       "name": "truegaming",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "asktransgender",
       "name": "asktransgender",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "badhistory",
       "name": "badhistory",
       "group": "Social Science and Humanities",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "badlegaladvice",
       "name": "badlegaladvice",
       "group": "Law",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "badlinguistics",
       "name": "badlinguistics",
       "group": "Hobbies and Interests",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "badphilosophy",
       "name": "badphilosophy",
       "group": "Social Science and Humanities",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "badpsychology",
       "name": "badpsychology",
       "group": "Science",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "bad_cop_no_donut",
       "name": "bad_cop_no_donut",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "bestofreddit",
       "name": "bestofreddit",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "bestoftldr",
       "name": "bestoftldr",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
-    { "id": "bugs", "name": "bugs", "group": "Meta", "followed": false },
+    {
+      "id": "bugs",
+      "name": "bugs",
+      "group": "Meta",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "catholicism",
       "name": "catholicism",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "childfree",
       "name": "childfree",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "chrome",
       "name": "chrome",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "circlebroke",
       "name": "circlebroke",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "circlebroke2",
       "name": "circlebroke2",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "circlejerk",
       "name": "circlejerk",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "circlejerkcopypasta",
       "name": "circlejerkcopypasta",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "codcompetitive",
       "name": "codcompetitive",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "conservative",
       "name": "conservative",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "conspiratard",
       "name": "conspiratard",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "copypasta",
       "name": "copypasta",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "dadjokes",
       "name": "dadjokes",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "dailydot",
       "name": "dailydot",
       "group": "Meta",
+      "weight": 6,
       "followed": false
     },
     {
       "id": "danmag",
       "name": "danmag",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "defaultgems",
       "name": "defaultgems",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "dentistry",
       "name": "dentistry",
       "group": "Science",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "depression",
       "name": "depression",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "depthhub",
       "name": "depthhub",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "derekbest",
       "name": "derekbest",
       "group": "Other",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "destiny",
       "name": "destiny",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
-    { "id": "diablo", "name": "diablo", "group": "Gaming", "followed": false },
+    {
+      "id": "diablo",
+      "name": "diablo",
+      "group": "Gaming",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "dogecoin",
       "name": "dogecoin",
       "group": "Technology",
+      "weight": 5,
       "followed": false
     },
-    { "id": "dota2", "name": "dota2", "group": "Gaming", "followed": false },
-    { "id": "drama", "name": "drama", "group": "General", "followed": false },
+    {
+      "id": "dota2",
+      "name": "dota2",
+      "group": "Gaming",
+      "weight": 4,
+      "followed": false
+    },
+    {
+      "id": "drama",
+      "name": "drama",
+      "group": "General",
+      "weight": 5,
+      "followed": false
+    },
     {
       "id": "dramaland",
       "name": "dramaland",
       "group": "Other",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "electronic_cigarette",
       "name": "electronic_cigarette",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "enhancement",
       "name": "enhancement",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "enoughlibertarianspam",
       "name": "enoughlibertarianspam",
       "group": "News and Politics",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "entrepreneur",
       "name": "entrepreneur",
       "group": "Business",
+      "weight": 3,
       "followed": false
     },
-    { "id": "epu", "name": "epu", "group": "Other", "followed": false },
+    {
+      "id": "epu",
+      "name": "epu",
+      "group": "Other",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "evenwithcontext",
       "name": "evenwithcontext",
       "group": "General",
+      "weight": 6,
       "followed": false
     },
     {
       "id": "everysinglethread",
       "name": "everysinglethread",
       "group": "Other",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "examplesofevil",
       "name": "examplesofevil",
       "group": "Other",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "excgaration",
       "name": "excgaration",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
-    { "id": "fifa", "name": "fifa", "group": "Sports", "followed": false },
+    {
+      "id": "fifa",
+      "name": "fifa",
+      "group": "Sports",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "france",
       "name": "france",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
-    { "id": "india", "name": "india", "group": "Locations", "followed": false },
+    {
+      "id": "india",
+      "name": "india",
+      "group": "Locations",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "jailbreak",
       "name": "jailbreak",
       "group": "Technology",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "magictcg",
       "name": "magictcg",
       "group": "Gaming",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "minecraft",
       "name": "minecraft",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "oddlysatisfying",
       "name": "oddlysatisfying",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "programming",
       "name": "programming",
       "group": "Technology",
+      "weight": 6,
       "followed": false
     },
     {
       "id": "shitamericanssay",
       "name": "shitamericanssay",
       "group": "General",
+      "weight": 6,
       "followed": false
     },
     {
       "id": "tattoos",
       "name": "tattoos",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "techsupport",
       "name": "techsupport",
       "group": "Technology",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "thathappened",
       "name": "thathappened",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "fitnesscirclejerk",
       "name": "fitnesscirclejerk",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "flipping",
       "name": "flipping",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "frisson",
       "name": "frisson",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "frozen",
       "name": "frozen",
       "group": "Entertainment",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "gaybros",
       "name": "gaybros",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "getdisciplined",
       "name": "getdisciplined",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "globaloffensive",
       "name": "globaloffensive",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "gmomyths",
       "name": "gmomyths",
       "group": "Hobbies and Interests",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "goldredditsays",
       "name": "goldredditsays",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "grammar",
       "name": "grammar",
       "group": "Hobbies and Interests",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "hailcorporate",
       "name": "hailcorporate",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "hearthstone",
       "name": "hearthstone",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "hiphopcirclejerk",
       "name": "hiphopcirclejerk",
       "group": "Music",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "hiphopheads",
       "name": "hiphopheads",
       "group": "Music",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "horriblydepressing",
       "name": "horriblydepressing",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
-    { "id": "howto", "name": "howto", "group": "General", "followed": false },
+    {
+      "id": "howto",
+      "name": "howto",
+      "group": "General",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "iamverysmart",
       "name": "iamverysmart",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "jakeandamir",
       "name": "jakeandamir",
       "group": "Entertainment",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "justneckbeardthings",
       "name": "justneckbeardthings",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "karmaconspiracy",
       "name": "karmaconspiracy",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "karmacourt",
       "name": "karmacourt",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
-    { "id": "keto", "name": "keto", "group": "Lifestyle", "followed": false },
+    {
+      "id": "keto",
+      "name": "keto",
+      "group": "Lifestyle",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "kitchenconfidential",
       "name": "kitchenconfidential",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "montageparodies",
       "name": "montageparodies",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "onepiece",
       "name": "onepiece",
       "group": "Entertainment",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "pokemon",
       "name": "pokemon",
       "group": "Gaming",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "starcraft",
       "name": "starcraft",
       "group": "Gaming",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "subredditdrama",
       "name": "subredditdrama",
       "group": "Meta",
+      "weight": 9,
       "followed": false
     },
-    { "id": "tf2", "name": "tf2", "group": "Gaming", "followed": false },
+    {
+      "id": "tf2",
+      "name": "tf2",
+      "group": "Gaming",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "trendingsubreddits",
       "name": "trendingsubreddits",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
-    { "id": "twitch", "name": "twitch", "group": "Gaming", "followed": false },
+    {
+      "id": "twitch",
+      "name": "twitch",
+      "group": "Gaming",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "legaladvice",
       "name": "legaladvice",
       "group": "Law",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "letsplay",
       "name": "letsplay",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "libertarian",
       "name": "libertarian",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "magicskyfairy",
       "name": "magicskyfairy",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
-    { "id": "math", "name": "math", "group": "Science", "followed": false },
+    {
+      "id": "math",
+      "name": "math",
+      "group": "Science",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "metacanada",
       "name": "metacanada",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "mexico",
       "name": "mexico",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "mildlyburned",
       "name": "mildlyburned",
       "group": "Other",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "mlplounge",
       "name": "mlplounge",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "mostgilded",
       "name": "mostgilded",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "mrselfpostcopies",
       "name": "mrselfpostcopies",
       "group": "Adult and NSFW",
+      "weight": 3,
       "followed": false
     },
-    { "id": "wiiu", "name": "wiiu", "group": "Gaming", "followed": false },
+    {
+      "id": "wiiu",
+      "name": "wiiu",
+      "group": "Gaming",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "xboxone",
       "name": "xboxone",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "nocontext_wallpapers",
       "name": "nocontext_wallpapers",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
-    { "id": "nofap", "name": "nofap", "group": "Lifestyle", "followed": false },
+    {
+      "id": "nofap",
+      "name": "nofap",
+      "group": "Lifestyle",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "opdelivers",
       "name": "opdelivers",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "openbroke",
       "name": "openbroke",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "oppression",
       "name": "oppression",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "physics",
       "name": "physics",
       "group": "Science",
+      "weight": 3,
       "followed": false
     },
-    { "id": "pka", "name": "pka", "group": "Gaming", "followed": false },
+    {
+      "id": "pka",
+      "name": "pka",
+      "group": "Gaming",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "politicalmoderation",
       "name": "politicalmoderation",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "polyamory",
       "name": "polyamory",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "portland",
       "name": "portland",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "quityourbullshit",
       "name": "quityourbullshit",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "redditinsider",
       "name": "redditinsider",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "relevantxkcd",
       "name": "relevantxkcd",
       "group": "Entertainment",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "resissues",
       "name": "resissues",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "retiredgif",
       "name": "retiredgif",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "retiredjpg",
       "name": "retiredjpg",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "runescape",
       "name": "runescape",
       "group": "Gaming",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "russia",
       "name": "russia",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
-    { "id": "self", "name": "self", "group": "General", "followed": false },
+    {
+      "id": "self",
+      "name": "self",
+      "group": "General",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "shitpoliticssays",
       "name": "shitpoliticssays",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "shitpost",
       "name": "shitpost",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "shitredditgilds",
       "name": "shitredditgilds",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "shitstatistssay",
       "name": "shitstatistssay",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "shittyama",
       "name": "shittyama",
       "group": "General",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "silverbugs",
       "name": "silverbugs",
       "group": "Hobbies and Interests",
+      "weight": 3,
       "followed": false
     },
-    { "id": "sjwnews", "name": "sjwnews", "group": "Other", "followed": false },
+    {
+      "id": "sjwnews",
+      "name": "sjwnews",
+      "group": "Other",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "skeptic",
       "name": "skeptic",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "socialism",
       "name": "socialism",
       "group": "News and Politics",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "spiders",
       "name": "spiders",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "srsgaming",
       "name": "srsgaming",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "srsmythos",
       "name": "srsmythos",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "srssucks",
       "name": "srssucks",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "starcraftcirclejerk",
       "name": "starcraftcirclejerk",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "stopgaming",
       "name": "stopgaming",
       "group": "Lifestyle",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "subredditoftheday",
       "name": "subredditoftheday",
       "group": "Meta",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "subsubredditdrama",
       "name": "subsubredditdrama",
       "group": "Other",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "summerreddit",
       "name": "summerreddit",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "sweden",
       "name": "sweden",
       "group": "Locations",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "switcharoo",
       "name": "switcharoo",
       "group": "Meta",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "swoleacceptance",
       "name": "swoleacceptance",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
-    { "id": "tall", "name": "tall", "group": "Lifestyle", "followed": false },
+    {
+      "id": "tall",
+      "name": "tall",
+      "group": "Lifestyle",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "teenguide",
       "name": "teenguide",
       "group": "Other",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "thepopcornstand",
       "name": "thepopcornstand",
       "group": "Meta",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "tipofmytongue",
       "name": "tipofmytongue",
       "group": "General",
+      "weight": 5,
       "followed": false
     },
     {
       "id": "titlegore",
       "name": "titlegore",
       "group": "General",
+      "weight": 8,
       "followed": false
     },
     {
       "id": "transphobiaproject",
       "name": "transphobiaproject",
       "group": "Lifestyle",
+      "weight": 4,
       "followed": false
     },
     {
       "id": "worldcup",
       "name": "worldcup",
       "group": "Sports",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "whiterights",
       "name": "whiterights",
       "group": "Adult and NSFW",
+      "weight": 3,
       "followed": false
     },
-    { "id": "worstof", "name": "worstof", "group": "Meta", "followed": false },
+    {
+      "id": "worstof",
+      "name": "worstof",
+      "group": "Meta",
+      "weight": 4,
+      "followed": false
+    },
     {
       "id": "wowguilds",
       "name": "wowguilds",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     },
     {
       "id": "wtfdidijustread",
       "name": "wtfdidijustread",
       "group": "General",
+      "weight": 3,
       "followed": false
     },
-    { "id": "yms", "name": "yms", "group": "Entertainment", "followed": false },
+    {
+      "id": "yms",
+      "name": "yms",
+      "group": "Entertainment",
+      "weight": 3,
+      "followed": false
+    },
     {
       "id": "yogscast",
       "name": "yogscast",
       "group": "Gaming",
+      "weight": 3,
       "followed": false
     }
   ],

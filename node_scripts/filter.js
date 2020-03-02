@@ -136,8 +136,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     ) {
       linkUsed.push({
         source: linkArr[i].source,
-        target: linkArr[i].target
-        // weight: linksTargetted[linkArr[i].target]
+        target: linkArr[i].target,
       })
     } else if (
       !subreddits.includes(linkArr[i].source) &&
@@ -146,8 +145,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     ) {
       linkUsed.push({
         source: linkArr[i].source,
-        target: linkArr[i].target
-        // weight: linksTargetted[linkArr[i].target]
+        target: linkArr[i].target,
       })
     }
   }
@@ -159,7 +157,8 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
       var node = {
         id: linkUsed[i].target,
         name: linkUsed[i].target,
-        group: 'Other'
+        group: 'Other',
+        weight: linksTargetted[linkUsed[i].target].length
       }
       for (var y = 0; y < categories.length; y++) {
         if (
@@ -169,11 +168,8 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
           node.group = categories[y].CATEGORY
         }
       }
-      if (subreddits.includes(linkUsed[i].target)) {
-        node.followed = true
-      } else {
-        node.followed = false
-      }
+      node.followed = subreddits.includes(linkUsed[i].target)
+
       nodes.push(node)
       nodesUsed.push(linkUsed[i].target)
     }
@@ -181,7 +177,8 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
       var node = {
         id: linkUsed[i].source,
         name: linkUsed[i].source,
-        group: 'Other'
+        group: 'Other',
+        weight: linksTargetted[linkUsed[i].source].length
       }
       for (var y = 0; y < categories.length; y++) {
         if (
@@ -191,11 +188,8 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
           node.group = categories[y].CATEGORY
         }
       }
-      if (subreddits.includes(linkUsed[i].source)) {
-        node.followed = true
-      } else {
-        node.followed = false
-      }
+      node.followed = subreddits.includes(linkUsed[i].source)
+
       nodes.push(node)
       nodesUsed.push(linkUsed[i].source)
     }

@@ -48,8 +48,8 @@ class App {
 			.enter().append("g")
 			
 		var circles = node.append("circle")
-			//Change shape for followed
-			.attr("r", function(d) { return d.followed ?  10 :  5; })
+			//Change shape for followed instead of standard 30 weight
+			.attr("r", function(d) { return d.followed ?  30 : d.weight * 2 })
 			.attr("fill", function(d) { return color(d.group); })
 			.call(d3.drag()
 				.on("start", dragstarted)
@@ -59,10 +59,12 @@ class App {
 					node
 						.style("cursor", "pointer")
 
+					var weight = d.followed ? '' : "<br/>"  + 'Linked:' + d.weight;
+
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category:' + d.group)
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category:' + d.group + weight)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
