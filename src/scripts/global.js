@@ -48,7 +48,8 @@ class App {
 			.enter().append("g")
 			
 		var circles = node.append("circle")
-			.attr("r", 5)
+			//Change shape for followed
+			.attr("r", function(d) { return d.followed ?  10 :  5; })
 			.attr("fill", function(d) { return color(d.group); })
 			.call(d3.drag()
 				.on("start", dragstarted)
