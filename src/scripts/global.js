@@ -49,9 +49,16 @@ class App {
 			.data(graph.nodes)
 			.enter().append("g")
 			
-		var circles = node.append("circle")
+		var circles = node.append("rect")
 			//Change shape for followed instead of standard 30 weight
-			.attr("r", function(d) { return d.followed ?  30 : d.weight * 2 })
+			.attr("rx", function(d) { return d.followed ?  0 : 100})
+			.attr("ry", function(d) { return d.followed ?  0 : 100})
+			.attr("x",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+   			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("width", function(d) { return d.followed ?  26 : d.weight * 2 })
+			.attr("height", function(d) { return d.followed ?  26 : d.weight * 2 })
+			.attr("stroke","white")
+
 			.attr("fill", function(d) { return color(d.group); })
 			.call(d3.drag()
 				.on("start", dragstarted)
