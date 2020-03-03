@@ -48,6 +48,10 @@ class App {
 			.selectAll("g")
 			.data(graph.nodes)
 			.enter().append("g")
+			.call(d3.drag()
+				.on("start", dragstarted)
+				.on("drag", dragged)
+				.on("end", dragended))
 			
 		var circles = node.append("rect")
 			//Change shape for followed instead of standard 30 weight
@@ -60,10 +64,6 @@ class App {
 			.attr("stroke","white")
 
 			.attr("fill", function(d) { return color(d.group); })
-			.call(d3.drag()
-				.on("start", dragstarted)
-				.on("drag", dragged)
-				.on("end", dragended))
 				.on("mouseover", function(d){
 					node
 						.style("cursor", "pointer")
