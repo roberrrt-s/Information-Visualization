@@ -16,7 +16,8 @@ class App {
 
 		var svg = d3.select("svg"),
 			width = +svg.attr("width"),
-			height = +svg.attr("height");
+			height = +svg.attr("height"),
+			radius = 6;
 
 		var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -33,6 +34,7 @@ class App {
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
 			.force("charge", d3.forceManyBody().strength(-200))
 			.force("center", d3.forceCenter(width / 2, height / 2));
+
 
 		var link = svg.append("g")
 			.attr("class", "links")
@@ -59,12 +61,12 @@ class App {
 					node
 						.style("cursor", "pointer")
 
-					var weight = d.followed ? '' : "<br/>"  + 'Linked:' + d.weight;
+					var weight = d.followed ? '' : "<br/>"  + 'Linked: ' + d.weight;
 
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category:' + d.group + weight)
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
@@ -107,6 +109,8 @@ class App {
 				.attr("transform", function(d) {
 				return "translate(" + d.x + "," + d.y + ")";
 				})
+				.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+				.attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
 		}
 		
 
