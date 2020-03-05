@@ -195,9 +195,18 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     }
   }
 
-  var output = {
+var rec_subs = nodes.sort(function (a,b) {
+    return b["weight"] - a["weight"]
+  }).slice(0,15);
+
+var output = {
     nodes: nodes,
     links: linkUsed
   }
   fs.writeFileSync('data.json', JSON.stringify(output))
+
+var recommended_subs = {
+    rec_subs: rec_subs
+  }
+  fs.writeFileSync('rec_subs.json', JSON.stringify(recommended_subs))
 })
