@@ -32,7 +32,7 @@ class App {
 		//https://github.com/d3/d3-force USE force/distanceMax etc
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
-			.force("charge", d3.forceManyBody().strength(-200))
+			.force("charge", d3.forceManyBody().strength(-250))
 			.force("center", d3.forceCenter(width / 2, height / 2));
 
 
@@ -55,12 +55,12 @@ class App {
 			
 		var circles = node.append("rect")
 			//Change shape for followed instead of standard 30 weight
-			.attr("rx", function(d) { return d.followed == 'user1' || d.followed == 'user2' ?  0 : 100})
-			.attr("ry", function(d) { return d.followed == 'user1' || d.followed == 'user2'?  0 : 100})
-			.attr("x",function(d) { return -(d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2) / 2})
-   			.attr("y",function(d) { return -(d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2) / 2})
-			.attr("width", function(d) { return d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2 })
-			.attr("height", function(d) { return d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2 })
+			.attr("rx", function(d) { return d.followed != 0  ?  0 : 100})
+			.attr("ry", function(d) { return d.followed != 0  ?  0 : 100})
+			.attr("x",function(d) { return -(d.followed != 0  ?  26 : d.weight * 3) / 2})
+   			.attr("y",function(d) { return -(d.followed != 0  ?  26 : d.weight * 3) / 2})
+			.attr("width", function(d) { return d.followed != 0 ?  26 : d.weight * 3 })
+			.attr("height", function(d) { return d.followed != 0  ?  26 : d.weight * 3 })
 			.attr("stroke","white")
 
 			.attr("fill", function(d) { return color(d.group); })
@@ -68,7 +68,7 @@ class App {
 					node
 						.style("cursor", "pointer")
 
-					var weight = d.followed == 'user1' || d.followed == 'user2' ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
 
 					tooltip
 						.style("opacity", 0)

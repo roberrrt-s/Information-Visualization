@@ -93,7 +93,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
   for (var i = 0; i < linkUsed.length; i++) {
     if (!nodesUsed.includes(linkUsed[i].target)) {
       if (combinedLinksTargetted[linkUsed[i].target]) {
-        var weight = combinedLinksTargetted[linkUsed[i].target]
+        var weight = combinedLinksTargetted[linkUsed[i].target].length
       } else {
         var weight = 0
       }
@@ -112,17 +112,17 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
         }
       }
       node.followed = subreddits[0].includes(linkUsed[i].target)
-        ? 'user1'
+        ? 1
         : subreddits[1].includes(linkUsed[i].target)
-        ? 'user2'
-        : false
+        ? 2
+        : 0
 
       nodes.push(node)
       nodesUsed.push(linkUsed[i].target)
     }
     if (!nodesUsed.includes(linkUsed[i].source)) {
       if (combinedLinksTargetted[linkUsed[i].source]) {
-        var weight = combinedLinksTargetted[linkUsed[i].source]
+        var weight = combinedLinksTargetted[linkUsed[i].source].length
       } else {
         var weight = 0
       }
@@ -141,10 +141,10 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
         }
       }
       node.followed = subreddits[0].includes(linkUsed[i].source)
-        ? 'user1'
+        ? 1
         : subreddits[1].includes(linkUsed[i].source)
-        ? 'user2'
-        : false
+        ? 2
+        : 0
 
       nodes.push(node)
       nodesUsed.push(linkUsed[i].source)
