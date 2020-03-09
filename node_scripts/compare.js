@@ -124,14 +124,17 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     if (!nodesUsed.includes(linkUsed[i].target)) {
       if (combinedLinksTargetted[linkUsed[i].target]) {
         var weight = combinedLinksTargetted[linkUsed[i].target].length
+        var links = combinedLinksTargetted[linkUsed[i].target]
       } else {
         var weight = 0
+        var links = []
       }
       var node = {
         id: linkUsed[i].target,
         name: linkUsed[i].target,
         group: 'Other',
-        weight: weight
+        weight: weight,
+        links: links
       }
       for (var y = 0; y < categories.length; y++) {
         if (
@@ -153,14 +156,17 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     if (!nodesUsed.includes(linkUsed[i].source)) {
       if (combinedLinksTargetted[linkUsed[i].source]) {
         var weight = combinedLinksTargetted[linkUsed[i].source].length
+        var links = combinedLinksTargetted[linkUsed[i].source]
       } else {
         var weight = 0
+        var links = []
       }
       var node = {
         id: linkUsed[i].source,
         name: linkUsed[i].source,
         group: 'Other',
-        weight: weight
+        weight: weight,
+        links: links
       }
       for (var y = 0; y < categories.length; y++) {
         if (

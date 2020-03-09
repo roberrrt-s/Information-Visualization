@@ -73,7 +73,7 @@ class App {
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight)
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + "<br/>"  + 'Links: ' + d.links)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
