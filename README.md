@@ -33,3 +33,10 @@ Extra:
 - Allow for additional bubbles to be used
 
 
+## Week 4
+- Good progress
+- Reduce visual clutter 
+- Add API functionality
+- Make it fancy (better animations/styling)
+- Work with the links (make them larger the stronger they are)
+
