@@ -7,15 +7,17 @@ var linkArr = []
 var linkUsed = []
 var linksTargetted = []
 var subreddits = [
-  'programmerhumor',
-  'leagueoflegends',
-  'videos',
-  'askreddit',
-  'smashbros',
-  'askscience',
-  'nintendo',
-  'explainlikeimfive',
-  'wow'
+  [
+    'programmerhumor',
+    'leagueoflegends',
+    'videos',
+    'askreddit',
+    'smashbros',
+    'askscience',
+    'nintendo',
+    'explainlikeimfive',
+    'wow'
+  ]
 ]
 
 var categories
@@ -136,7 +138,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     ) {
       linkUsed.push({
         source: linkArr[i].source,
-        target: linkArr[i].target,
+        target: linkArr[i].target
       })
     } else if (
       !subreddits.includes(linkArr[i].source) &&
@@ -145,7 +147,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     ) {
       linkUsed.push({
         source: linkArr[i].source,
-        target: linkArr[i].target,
+        target: linkArr[i].target
       })
     }
   }
@@ -195,17 +197,19 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
     }
   }
 
-var rec_subs = nodes.sort(function (a,b) {
-    return b["weight"] - a["weight"]
-  }).slice(0,15);
+  var rec_subs = nodes
+    .sort(function (a, b) {
+      return b['weight'] - a['weight']
+    })
+    .slice(0, 15)
 
-var output = {
+  var output = {
     nodes: nodes,
     links: linkUsed
   }
   fs.writeFileSync('data.json', JSON.stringify(output))
 
-var recommended_subs = {
+  var recommended_subs = {
     rec_subs: rec_subs
   }
   fs.writeFileSync('rec_subs.json', JSON.stringify(recommended_subs))

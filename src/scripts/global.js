@@ -1,4 +1,4 @@
-import graph from '../resources/data.json'
+import graph from '../resources/data_compared.json'
 
 const APP = {
 	NAME: 'InfoViz 2020 University of Amsterdam concept',
@@ -55,12 +55,12 @@ class App {
 			
 		var circles = node.append("rect")
 			//Change shape for followed instead of standard 30 weight
-			.attr("rx", function(d) { return d.followed ?  0 : 100})
-			.attr("ry", function(d) { return d.followed ?  0 : 100})
-			.attr("x",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
-   			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
-			.attr("width", function(d) { return d.followed ?  26 : d.weight * 2 })
-			.attr("height", function(d) { return d.followed ?  26 : d.weight * 2 })
+			.attr("rx", function(d) { return d.followed == 'user1' || d.followed == 'user2' ?  0 : 100})
+			.attr("ry", function(d) { return d.followed == 'user1' || d.followed == 'user2'?  0 : 100})
+			.attr("x",function(d) { return -(d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2) / 2})
+   			.attr("y",function(d) { return -(d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2) / 2})
+			.attr("width", function(d) { return d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2 })
+			.attr("height", function(d) { return d.followed == 'user1' || d.followed == 'user2' ?  26 : d.weight * 2 })
 			.attr("stroke","white")
 
 			.attr("fill", function(d) { return color(d.group); })
@@ -68,7 +68,7 @@ class App {
 					node
 						.style("cursor", "pointer")
 
-					var weight = d.followed ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					var weight = d.followed == 'user1' || d.followed == 'user2' ? '' : "<br/>"  + 'Linked: ' + d.weight;
 
 					tooltip
 						.style("opacity", 0)
