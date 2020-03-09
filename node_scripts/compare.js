@@ -15,9 +15,37 @@ var subreddits = [
     'askreddit',
     'askscience',
     'nintendo',
-    'explainlikeimfive'
+    'explainlikeimfive',
+    'trippinthroughtime',
+    'wow',
+    'movies',
+    'moviedetetails',
+    'funnyandsad',
+    'nottheonion',
+    'dataisbeautiful',
+    'outoftheloop',
+    'meirl',
+    'aww',
+    'choosingbeggars',
+    'atbge',
+    'insanepeoplefacebook'
   ],
-  ['aww', 'plants', 'tifu', 'politics', 'netherlands']
+  [
+    'trippinthroughtime',
+    'twoxchromosomes',
+    'whatsthisplant',
+    'writingprompts',
+    'succulents',
+    'tattoos',
+    'plantclinic',
+    'plants',
+    'niceguys',
+    'fellowkids',
+    'crappydesign',
+    'aboringdystopia',
+    'aww',
+    'meirl'
+  ]
 ]
 
 var categories
@@ -63,6 +91,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
   for (var i = 0; i < linkArr.length; i++) {
     if (
       !subreddits[0].includes(linkArr[i].target) &&
+      !subreddits[1].includes(linkArr[i].target) &&
       linksTargetted[linkArr[i].target] != undefined &&
       linksTargetted[linkArr[i].target][0] != undefined &&
       linksTargetted[linkArr[i].target][0].length > 0 &&
@@ -75,6 +104,7 @@ fs.readFile('../src/resources/datalinks.json', function read (err, data) {
       })
     } else if (
       !subreddits[0].includes(linkArr[i].source) &&
+      !subreddits[1].includes(linkArr[i].source) &&
       linksTargetted[linkArr[i].source] != undefined &&
       linksTargetted[linkArr[i].source][0] != undefined &&
       linksTargetted[linkArr[i].source][0].length > 0 &&
