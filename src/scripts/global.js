@@ -122,7 +122,7 @@ class App {
 						.style("cursor", "pointer")
 						;});
 
-		var user1_subs = d3.selectAll(".user2").append("ellipse")
+		var user2_subs = d3.selectAll(".user2").append("ellipse")
 			// .attr("cx", 50)
 			// .attr("cy", 50)
 			.attr("rx", 25)
