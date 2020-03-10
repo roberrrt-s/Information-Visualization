@@ -76,7 +76,6 @@ class App {
 			.attr("class", "tooltip")
 			.style("position", "absolute")
 			.style("z-index", "10")
-			// .style("visibility", "hidden")
 			.style("visibility", "hidden");
 
 		//https://github.com/d3/d3-force USE force/distanceMax etc
@@ -98,6 +97,15 @@ class App {
 			.selectAll("g")
 			.data(graph.nodes)
 			.enter().append("g")
+			.attr("class", function(d) {
+				if (d.followed == 0) {
+					return "not_followed"
+				} else if (d.followed== 1) {
+					return "user1"
+				} else {
+					return "user2"
+				}
+			 })
 			.call(d3.drag()
 				.on("start", dragstarted)
 				.on("drag", dragged)
@@ -113,6 +121,73 @@ class App {
 			.attr("height", function(d) { return d.followed != 0  ?  26 : d.weight * 3 })
 			.attr("stroke","white")
 
+		// subreddits not followed by any user
+		var unfollowed_subs = d3.selectAll(".not_followed").append("circle")
+			.attr("r", function(d) { return d.weight * 2})
+			.attr("fill", function(d) { return color(d.group); })
+				.on("mouseover", function(d){
+					node
+						.style("cursor", "pointer")
+
+					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+
+					tooltip
+						.style("opacity", 0)
+						.style("visibility", "visible")
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + "<br/>"  + 'Links: ' + d.links)
+						.transition()
+						.duration(130)
+						.style("opacity", 1)
+					})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mouseout", function(){
+					tooltip
+						.transition()
+						.duration(130)
+						.style("opacity", 0)
+						.style("cursor", "pointer")
+						;});
+
+
+		var user1_subs = d3.selectAll(".user1").append("rect")
+			.attr("x",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("width", 30)
+			.attr("height", 30)
+			.attr("stroke","blue")
+			.attr("stroke-width", 2.5)
+
+			.attr("fill", function(d) { return color(d.group); })
+				.on("mouseover", function(d){
+					node
+						.style("cursor", "pointer")
+
+					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+
+					tooltip
+						.style("opacity", 0)
+						.style("visibility", "visible")
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + "<br/>"  + 'Links: ' + d.links)
+						.transition()
+						.duration(130)
+						.style("opacity", 1)
+					})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mouseout", function(){
+					tooltip
+						.transition()
+						.duration(130)
+						.style("opacity", 0)
+						.style("cursor", "pointer")
+						;});
+
+		var user2_subs = d3.selectAll(".user2").append("ellipse")
+			// .attr("cx", 50)
+			// .attr("cy", 50)
+			.attr("rx", 25)
+			.attr( "ry", 10)
+			.attr("stroke", "red")
+			.attr("stroke-width", 2.5)
 			.attr("fill", function(d) { return color(d.group); })
 				.on("mouseover", function(d){
 					node
