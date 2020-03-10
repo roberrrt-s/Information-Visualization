@@ -1,5 +1,7 @@
 import graph from '../resources/data_compared.json'
 
+var snoowrap = require('snoowrap');
+
 const APP = {
 	NAME: 'InfoViz 2020 University of Amsterdam concept',
 	VERSION: '1.0.0',
@@ -10,6 +12,54 @@ const APP = {
 class App {
 
 	constructor() {
+		this.r = new snoowrap({
+			userAgent: 'testscript by /u/InfoVis40',
+			clientId: 'kh7fIqiKp5aLpg',
+			clientSecret: 'eK59n4IC4WcVAYvGAAooxlOlmhQ',
+			refreshToken: '25748477-HQ4y6e-wyg_6sIls2v0zCVMAb88'
+		});
+
+		this.initGraph();
+		this.initSearch();
+	}
+
+	initSearch() {
+		const search = document.querySelector('#searchfield');
+		const button = document.querySelector('#submit');
+
+		let query;
+
+		console.log(this.r)
+
+		button.addEventListener('click', e => {
+			if(search.value.length > 0 && search.value.length < 21) {
+				query = search.value;
+				let user = this.r.getUser(query);
+				this.r.getUser(query)
+					.getUpvotedContent()
+						.then(data => {
+							console.log('found userdata')
+							search.classList.add('has-result')
+							search.classList.remove('has-error');
+
+							console.log(data);
+						})
+						.catch(weird => {
+							console.log('User doest not exist or is not public')
+							search.classList.add('has-error')
+							search.classList.remove('has-result');
+						})
+						.error(error => {
+							console.log('if we reach this we are doomed')
+						})
+			}
+		})
+
+
+	}
+
+	initGraph() {
+
 		document.querySelector('svg').setAttribute('height', window.innerHeight);
 		document.querySelector('svg').setAttribute('width', window.innerWidth);
 
@@ -52,7 +102,7 @@ class App {
 				.on("start", dragstarted)
 				.on("drag", dragged)
 				.on("end", dragended))
-			
+
 		var circles = node.append("rect")
 			//Change shape for followed instead of standard 30 weight
 			.attr("rx", function(d) { return d.followed != 0  ?  0 : 100})
@@ -114,29 +164,29 @@ class App {
 
 			node
 				.attr("transform", function(d) {
-				return "translate(" + d.x + "," + d.y + ")";
+					return "translate(" + d.x + "," + d.y + ")";
 				})
 				.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
 				.attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
 		}
-		
 
 		function dragstarted(d) {
-		if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-		d.fx = d.x;
-		d.fy = d.y;
+			if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+				d.fx = d.x;
+				d.fy = d.y;
 		}
 
 		function dragged(d) {
-		d.fx = d3.event.x;
-		d.fy = d3.event.y;
+			d.fx = d3.event.x;
+			d.fy = d3.event.y;
 		}
 
 		function dragended(d) {
-		if (!d3.event.active) simulation.alphaTarget(0);
-		d.fx = null;
-		d.fy = null;
+			if (!d3.event.active) simulation.alphaTarget(0);
+				d.fx = null;
+				d.fy = null;
 		}
-}
+
+	}
 }
 const app = new App();
