@@ -29,25 +29,49 @@ class App {
 
 		let query;
 
-		console.log(this.r)
-
 		button.addEventListener('click', e => {
+			console.log(search.value);
+
 			if(search.value.length > 0 && search.value.length < 21) {
 				query = search.value;
 				let user = this.r.getUser(query);
 				this.r.getUser(query)
-					.getUpvotedContent()
+					.getUpvotedContent().fetchMore({amount: 25})
 						.then(data => {
 							console.log('found userdata')
 							search.classList.add('has-result')
 							search.classList.remove('has-error');
 
-							console.log(data);
+							let subreddits = [];
+							let duplicate = [];
+
+							for(var i = 0; i < data.length; i++) {
+								subreddits.push(data[i].subreddit_name_prefixed.substr(2));
+							}
+
+
+							let unique = subreddits.filter((v, i, a) => {
+								if(a.indexOf(v) === i) {
+									console.log(v);
+								} else {
+									duplicate.push(v)
+								}
+							})
+
+							if(!duplicate.length) {
+								duplicate = unique;
+							}
+
+							duplicate = duplicate.filter((v, i, a) => a.indexOf(v) === i);
+
+							duplicate = duplicate.slice(0, 5);
+
 						})
 						.catch(weird => {
 							console.log('User doest not exist or is not public')
 							search.classList.add('has-error')
 							search.classList.remove('has-result');
+							console.log(weird)
 						})
 						.error(error => {
 							console.log('if we reach this we are doomed')
