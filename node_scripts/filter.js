@@ -1,5 +1,4 @@
 var fs = require('fs')
-var csv = require('csv-parser')
 
 var nodeArr = []
 var nodesUsed = []

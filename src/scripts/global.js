@@ -43,7 +43,7 @@ class App {
 							search.classList.remove('has-error');
 
 							let subreddits = [];
-							let duplicate = [];
+							let selection = [];
 
 							for(var i = 0; i < data.length; i++) {
 								subreddits.push(data[i].subreddit_name_prefixed.substr(2));
@@ -51,20 +51,19 @@ class App {
 
 
 							let unique = subreddits.filter((v, i, a) => {
-								if(a.indexOf(v) === i) {
-									console.log(v);
-								} else {
-									duplicate.push(v)
+								if(a.indexOf(v) !== i) {
+									selection.push(v)
 								}
 							})
 
 							if(!duplicate.length) {
-								duplicate = unique;
+								selection = unique;
 							}
 
-							duplicate = duplicate.filter((v, i, a) => a.indexOf(v) === i);
+							selection = selection.filter((v, i, a) => a.indexOf(v) === i);
+							selection = selection.slice(0, 5);
 
-							duplicate = duplicate.slice(0, 5);
+							console.log(selection)
 
 						})
 						.catch(weird => {
@@ -86,7 +85,6 @@ class App {
 
 		document.querySelector('svg').setAttribute('height', window.innerHeight);
 		document.querySelector('svg').setAttribute('width', window.innerWidth);
-
 
 		var svg = d3.select("svg"),
 			width = +svg.attr("width"),
