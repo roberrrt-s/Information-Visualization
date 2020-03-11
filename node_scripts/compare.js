@@ -11,40 +11,21 @@ var subreddits = [
   [
     'programmerhumor',
     'leagueoflegends',
-    'videos',
-    'askreddit',
     'askscience',
-    'nintendo',
     'explainlikeimfive',
-    'trippinthroughtime',
-    'wow',
-    'movies',
-    'moviedetetails',
-    'funnyandsad',
-    'nottheonion',
+    'moviedetails',
     'dataisbeautiful',
     'outoftheloop',
-    'meirl',
-    'aww',
-    'choosingbeggars',
-    'atbge',
-    'insanepeoplefacebook'
   ],
   [
     'trippinthroughtime',
     'twoxchromosomes',
     'whatsthisplant',
     'writingprompts',
-    'succulents',
-    'tattoos',
-    'plantclinic',
     'plants',
     'niceguys',
     'fellowkids',
     'crappydesign',
-    'aboringdystopia',
-    'aww',
-    'meirl'
   ]
 ]
 

@@ -106,10 +106,10 @@ class App {
 			.force("charge", d3.forceManyBody().strength(-250))
 			.force("center", d3.forceCenter(width / 2, height / 2))
 			.force("x", d3.forceX(function(d){
-				if(d.followed === 0){
-					return width/2
-				} else if (d.followed === 1){
-					return width/6
+				if(d.followed === 1){
+					return width/10
+				} else if (d.followed === 2){
+					return width - (width/10)
 				} else {
 					return 2*(width/3)
 				}
