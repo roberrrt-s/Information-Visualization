@@ -2,15 +2,15 @@
   "entrypoints": {
     "main": {
       "js": [
-        "/scripts/vendors~main-e0b3e7ac21d69734.js",
-        "/scripts/main-841120ccde22ed67.js"
+        "/scripts/vendors~main-ec2e594743c1e27d.js",
+        "/scripts/main-0b3585c1f032b2d6.js"
       ],
       "css": [
-        "/styles/main-841120ccde22ed67.css"
+        "/styles/main-0b3585c1f032b2d6.css"
       ]
     }
   },
-  "main.css": "/styles/main-841120ccde22ed67.css",
-  "main.js": "/scripts/main-841120ccde22ed67.js",
-  "vendors~main.js": "/scripts/vendors~main-e0b3e7ac21d69734.js"
+  "main.css": "/styles/main-0b3585c1f032b2d6.css",
+  "main.js": "/scripts/main-0b3585c1f032b2d6.js",
+  "vendors~main.js": "/scripts/vendors~main-ec2e594743c1e27d.js"
 }

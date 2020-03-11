@@ -133,16 +133,6 @@ class App {
 				.on("drag", dragged)
 				.on("end", dragended))
 
-		var circles = node.append("rect")
-			//Change shape for followed instead of standard 30 weight
-			.attr("rx", function(d) { return d.followed != 0  ?  0 : 100})
-			.attr("ry", function(d) { return d.followed != 0  ?  0 : 100})
-			.attr("x",function(d) { return -(d.followed != 0  ?  26 : d.weight * 3) / 2})
-   			.attr("y",function(d) { return -(d.followed != 0  ?  26 : d.weight * 3) / 2})
-			.attr("width", function(d) { return d.followed != 0 ?  26 : d.weight * 3 })
-			.attr("height", function(d) { return d.followed != 0  ?  26 : d.weight * 3 })
-			.attr("stroke","white")
-
 		// subreddits not followed by any user
 		var unfollowed_subs = d3.selectAll(".not_followed").append("circle")
 			.attr("r", function(d) { return d.weight * 2})
