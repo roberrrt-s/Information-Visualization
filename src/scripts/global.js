@@ -115,6 +115,14 @@ class App {
 				}
 			})
 			.strength(2))
+			.force("y", d3.forceY(function(d){
+				if(d.weight > 0 && d.followed == 0){
+					return height/d.weight
+				}else{
+					return 0
+				}
+			})
+			.strength(1))
 			.force('collision', d3.forceCollide().radius(function(d) {
 				return d.weight * 2 + 10
 			  }));
@@ -155,11 +163,12 @@ class App {
 						.style("cursor", "pointer")
 
 					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
 
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + "<br/>"  + 'Links: ' + d.links)
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + links)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
@@ -188,11 +197,12 @@ class App {
 						.style("cursor", "pointer")
 
 					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
 
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + "<br/>"  + 'Links: ' + d.links)
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + links)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
@@ -219,11 +229,12 @@ class App {
 						.style("cursor", "pointer")
 
 					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
 
 					tooltip
 						.style("opacity", 0)
 						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + "<br/>"  + 'Links: ' + d.links)
+						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + links)
 						.transition()
 						.duration(130)
 						.style("opacity", 1)
