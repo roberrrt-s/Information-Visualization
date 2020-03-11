@@ -104,7 +104,20 @@ class App {
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { return d.id; }))
 			.force("charge", d3.forceManyBody().strength(-250))
-			.force("center", d3.forceCenter(width / 2, height / 2));
+			.force("center", d3.forceCenter(width / 2, height / 2))
+			.force("x", d3.forceX(function(d){
+				if(d.followed === 0){
+					return width/2
+				} else if (d.followed === 1){
+					return width/6
+				} else {
+					return 2*(width/3)
+				}
+			})
+			.strength(2))
+			.force('collision', d3.forceCollide().radius(function(d) {
+				return d.weight * 2 + 10
+			  }));
 
 
 		var link = svg.append("g")
@@ -122,7 +135,7 @@ class App {
 			.attr("class", function(d) {
 				if (d.followed == 0) {
 					return "not_followed"
-				} else if (d.followed== 1) {
+				} else if (d.followed == 1) {
 					return "user1"
 				} else {
 					return "user2"
