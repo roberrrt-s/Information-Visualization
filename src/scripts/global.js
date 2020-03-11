@@ -119,7 +119,7 @@ class App {
 				if(d.weight > 0 && d.followed == 0){
 					return height/d.weight
 				}else{
-					return 0
+					return height / (Math.random()*10)
 				}
 			})
 			.strength(1))
