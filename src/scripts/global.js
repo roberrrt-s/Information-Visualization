@@ -56,7 +56,7 @@ class App {
 								}
 							})
 
-							if(!duplicate.length) {
+							if(!selection.length) {
 								selection = unique;
 							}
 

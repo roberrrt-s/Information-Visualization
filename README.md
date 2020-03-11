@@ -19,7 +19,7 @@ Extra:
 
 
 ## Week 2
-- More personalised than just basic reddit data with 3d scatterplot 
+- More personalised than just basic reddit data with 3d scatterplot
 - 3D Neighbourhood/Echo chamber (Following subreddits/Rewards?)
 
 ## Week 3
@@ -27,7 +27,7 @@ Extra:
 - Starts with circle loading as user types first name (invisible search bar at start)
 - Divide dataset by topic
 - Use shape for subreddits you don’t know topic for for example
-- Use shape for followed/suggests subreddits 
+- Use shape for followed/suggests subreddits
 - Colorcode topic
 - Merge bubbles of other reddit users
 - Allow for additional bubbles to be used
@@ -35,8 +35,15 @@ Extra:
 
 ## Week 4
 - Good progress
-- Reduce visual clutter 
+- Reduce visual clutter
 - Add API functionality
 - Make it fancy (better animations/styling)
 - Work with the links (make them larger the stronger they are)
+
+## Week 5
+- Blank screen.
+- Input field, indicating something can be typed.
+- Main subreddits fly in.
+- Enter second name
+- Combine dataset
 
