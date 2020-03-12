@@ -164,8 +164,10 @@ class App {
 					node
 						.style("cursor", "pointer")
 
-					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
-					var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+					//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+					var weight = '';
+					var links = '';
 
 					tooltip
 						.style("opacity", 0)
@@ -175,7 +177,7 @@ class App {
 						.duration(130)
 						.style("opacity", 1)
 					})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-70)+"px").style("left",(event.pageX+10)+"px");})
 				.on('mouseout.fade', fade(1))
 				.on("mouseout", function(){
 					tooltip
@@ -200,8 +202,10 @@ class App {
 					node
 						.style("cursor", "pointer")
 
-					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
-					var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+					//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+					var weight = '';
+					var links = '';
 
 					tooltip
 						.style("opacity", 0)
@@ -211,7 +215,7 @@ class App {
 						.duration(130)
 						.style("opacity", 1)
 					})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-70)+"px").style("left",(event.pageX+10)+"px");})
 				.on('mouseout.fade', fade(1))
 				.on("mouseout", function(){
 					tooltip
@@ -235,8 +239,10 @@ class App {
 					node
 						.style("cursor", "pointer")
 
-					var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
-					var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+					//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+					//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+					var weight = '';
+					var links = '';
 
 					tooltip
 						.style("opacity", 0)
@@ -246,7 +252,7 @@ class App {
 						.duration(130)
 						.style("opacity", 1)
 					})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on("mousemove", function(){return tooltip.style("top", (event.pageY-70)+"px").style("left",(event.pageX+10)+"px");})
 				.on('mouseout.fade', fade(1))
 				.on("mouseout", function(){
 					tooltip
