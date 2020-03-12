@@ -119,7 +119,7 @@ class App {
 				if(d.weight > 0 && d.followed == 0){
 					return height/d.weight
 				}else{
-					return height / (Math.random()*10)
+					return height / ((Math.random()*10) / 2 + 2)
 				}
 			})
 			.strength(1))
@@ -158,7 +158,9 @@ class App {
 		var unfollowed_subs = d3.selectAll(".not_followed").append("circle")
 			.attr("r", function(d) { return d.weight * 2})
 			.attr("fill", function(d) { return color(d.group); })
+				.on('mouseover.fade', fade(0.1))
 				.on("mouseover", function(d){
+
 					node
 						.style("cursor", "pointer")
 
@@ -174,6 +176,7 @@ class App {
 						.style("opacity", 1)
 					})
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on('mouseout.fade', fade(1))
 				.on("mouseout", function(){
 					tooltip
 						.transition()
@@ -188,10 +191,11 @@ class App {
 			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
 			.attr("width", 30)
 			.attr("height", 30)
-			.attr("stroke","blue")
+			.attr("stroke","white")
 			.attr("stroke-width", 2.5)
 
 			.attr("fill", function(d) { return color(d.group); })
+				.on('mouseover.fade', fade(0.1))
 				.on("mouseover", function(d){
 					node
 						.style("cursor", "pointer")
@@ -208,6 +212,7 @@ class App {
 						.style("opacity", 1)
 					})
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on('mouseout.fade', fade(1))
 				.on("mouseout", function(){
 					tooltip
 						.transition()
@@ -216,14 +221,16 @@ class App {
 						.style("cursor", "pointer")
 						;});
 
-		var user2_subs = d3.selectAll(".user2").append("ellipse")
-			// .attr("cx", 50)
-			// .attr("cy", 50)
-			.attr("rx", 25)
-			.attr( "ry", 10)
-			.attr("stroke", "red")
+		var user2_subs = d3.selectAll(".user2").append("rect")
+			.attr("x",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("width", 30)
+			.attr("height", 30)
+			.attr("stroke","white")
 			.attr("stroke-width", 2.5)
+
 			.attr("fill", function(d) { return color(d.group); })
+				.on('mouseover.fade', fade(0.1))
 				.on("mouseover", function(d){
 					node
 						.style("cursor", "pointer")
@@ -240,6 +247,7 @@ class App {
 						.style("opacity", 1)
 					})
 				.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+				.on('mouseout.fade', fade(1))
 				.on("mouseout", function(){
 					tooltip
 						.transition()
@@ -253,8 +261,13 @@ class App {
 			.text(function(d) {
 				return d.id;
 			})
-			.attr('x', 6)
-			.attr('y', 3);
+			.attr('x', function(d){
+				return (d.weight * 2)
+			})
+			.attr('y', function(d){
+				return -(d.weight * 2) + 5
+			})
+			.style('background-color', 'white');
 
 		node.append("title")
 			.text(function(d) { return d.id; });
@@ -296,6 +309,26 @@ class App {
 			if (!d3.event.active) simulation.alphaTarget(0);
 				d.fx = null;
 				d.fy = null;
+		}
+
+		const linkedByIndex = {};
+		graph.links.forEach(d => {
+			linkedByIndex[`${d.source.index},${d.target.index}`] = 1;
+		});
+
+		function isConnected(a, b) {
+			return linkedByIndex[`${a.index},${b.index}`] || linkedByIndex[`${b.index},${a.index}`] || a.index === b.index;
+		}
+
+		function fade(opacity) {
+			return d => {
+				node.style('stroke-opacity', function (o) {
+					const thisOpacity = isConnected(d, o) ? 1 : opacity;
+					this.setAttribute('fill-opacity', thisOpacity);
+					return thisOpacity;
+				});
+				link.style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : opacity));
+			};
 		}
 
 	}
