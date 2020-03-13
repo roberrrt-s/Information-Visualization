@@ -1,4 +1,7 @@
-import graph from '../resources/data_compared.json'
+// import graph from '../resources/data_compared.json'
+
+import subreddit_topics from '../resources/subreddit_topics.json'
+import datalinks from '../resources/datalinks.json'
 
 var snoowrap = require('snoowrap');
 
@@ -19,8 +22,281 @@ class App {
 			refreshToken: '25748477-HQ4y6e-wyg_6sIls2v0zCVMAb88'
 		});
 
-		this.initGraph();
+		this.subreddits = [
+			[
+				'programmerhumor',
+				'leagueoflegends',
+				'askscience',
+				'explainlikeimfive',
+				'moviedetails',
+				'dataisbeautiful',
+				'outoftheloop',
+			]
+		]
+
 		this.initSearch();
+
+		this.graph = {}
+	}
+
+	initData() {
+
+		var nodeArr = []
+		var nodesUsed = []
+		var linkArr = []
+		var linkUsed = []
+		var linksTargetted = []
+		var combinedLinksTargetted = []
+
+		for (var i = 0; i < this.subreddits[0].length; i++) {
+			var node = {
+				id: this.subreddits[0][i],
+				name: this.subreddits[0][i],
+				group: 'user1'
+			}
+			nodeArr.push(node)
+			nodesUsed.push(this.subreddits[0][i])
+		}
+
+		for (var i = 0; i < this.subreddits[1].length; i++) {
+			var node = {
+				id: this.subreddits[0][i],
+				name: this.subreddits[0][i],
+				group: 'user2'
+			}
+			nodeArr.push(node)
+			nodesUsed.push(this.subreddits[1][i])
+		}
+
+		filterSubreddits(datalinks, this.subreddits[0], 0)
+		filterSubreddits(datalinks, this.subreddits[1], 1)
+
+		for (var i = 0; i < linkArr.length; i++) {
+			if (
+				!this.subreddits[0].includes(linkArr[i].target) &&
+				!this.subreddits[1].includes(linkArr[i].target) &&
+				linksTargetted[linkArr[i].target] != undefined &&
+				linksTargetted[linkArr[i].target][0] != undefined &&
+				linksTargetted[linkArr[i].target][0].length > 0 &&
+				linksTargetted[linkArr[i].target][1] != undefined &&
+				linksTargetted[linkArr[i].target][1].length > 0
+			) {
+				linkUsed.push({
+					source: linkArr[i].source,
+					target: linkArr[i].target
+				})
+			} else if (
+				!this.subreddits[0].includes(linkArr[i].source) &&
+				!this.subreddits[1].includes(linkArr[i].source) &&
+				linksTargetted[linkArr[i].source] != undefined &&
+				linksTargetted[linkArr[i].source][0] != undefined &&
+				linksTargetted[linkArr[i].source][0].length > 0 &&
+				linksTargetted[linkArr[i].source][1] != undefined &&
+				linksTargetted[linkArr[i].source][1].length > 0
+			) {
+				linkUsed.push({
+					source: linkArr[i].source,
+					target: linkArr[i].target
+				})
+			}
+		}
+
+		var nodes = []
+		nodesUsed = []
+		for (var i = 0; i < linkUsed.length; i++) {
+			if (!nodesUsed.includes(linkUsed[i].target)) {
+				if (combinedLinksTargetted[linkUsed[i].target]) {
+					var weight = combinedLinksTargetted[linkUsed[i].target].length
+					var links = combinedLinksTargetted[linkUsed[i].target]
+				} else {
+					var weight = 0
+					var links = []
+				}
+				var node = {
+					id: linkUsed[i].target,
+					name: linkUsed[i].target,
+					group: 'Other',
+					weight: weight,
+					links: links
+				}
+				for (var y = 0; y < subreddit_topics.length; y++) {
+					if (
+						linkUsed[i].target.toLowerCase() ==
+						subreddit_topics[y].SUBREDDIT.toString().toLowerCase()
+					) {
+						node.group = subreddit_topics[y].CATEGORY
+					}
+				}
+				node.followed = this.subreddits[0].includes(linkUsed[i].target)
+					? 1
+					: this.subreddits[1].includes(linkUsed[i].target)
+					? 2
+					: 0
+
+				nodes.push(node)
+				nodesUsed.push(linkUsed[i].target)
+			}
+			if (!nodesUsed.includes(linkUsed[i].source)) {
+				if (combinedLinksTargetted[linkUsed[i].source]) {
+					var weight = combinedLinksTargetted[linkUsed[i].source].length
+					var links = combinedLinksTargetted[linkUsed[i].source]
+				} else {
+					var weight = 0
+					var links = []
+				}
+				var node = {
+					id: linkUsed[i].source,
+					name: linkUsed[i].source,
+					group: 'Other',
+					weight: weight,
+					links: links
+				}
+				for (var y = 0; y < subreddit_topics.length; y++) {
+					if (
+						linkUsed[i].source.toLowerCase() ==
+						subreddit_topics[y].SUBREDDIT.toString().toLowerCase()
+					) {
+						node.group = subreddit_topics[y].CATEGORY
+					}
+				}
+				node.followed = this.subreddits[0].includes(linkUsed[i].source)
+					? 1
+					: this.subreddits[1].includes(linkUsed[i].source)
+					? 2
+					: 0
+
+				nodes.push(node)
+				nodesUsed.push(linkUsed[i].source)
+			}
+		}
+
+		var rec_subs = nodes
+			.sort(function (a, b) {
+				return b['weight'] - a['weight']
+			})
+			.slice(0, 15)
+
+		return {
+			nodes: nodes,
+			links: linkUsed
+		}
+
+		var recommended_subs = {
+			rec_subs: rec_subs
+		}
+
+		function filterSubreddits (data, sr, index) {
+			for (var i = 0; i < data.links.length; i++) {
+				for (var y = 0; y < sr.length; y++) {
+					if (sr[y] == data.links[i].source) {
+						//SUBREDDIT USED AS SOURCE
+						if (!nodesUsed.includes(data.links[i].target)) {
+							//NOT INCLUDED YET? -> ADD TO NODEUSED
+							var node = {
+								id: data.links[i].target,
+								name: data.links[i].target,
+								group: 'Other'
+							}
+
+							for (var y = 0; y < subreddit_topics.length; y++) {
+								if (
+									data.links[i].target.toLowerCase() ==
+									subreddit_topics[y].SUBREDDIT.toString().toLowerCase()
+								) {
+									node.group = subreddit_topics[y].CATEGORY
+								}
+							}
+							nodesUsed.push(data.links[i].target)
+							nodeArr.push(node)
+						}
+
+						var link = {
+							source: data.links[i].source,
+							target: data.links[i].target
+						}
+
+						linkArr.push(link)
+
+						if (
+							linksTargetted[data.links[i].target] &&
+							linksTargetted[data.links[i].target][index] &&
+							Array.isArray(linksTargetted[data.links[i].target][index])
+						) {
+							if (!linksTargetted[data.links[i].target][index].includes(sr[y])) {
+								linksTargetted[data.links[i].target][index].push(sr[y])
+							}
+						} else if (sr[y] != undefined) {
+							linksTargetted[data.links[i].target] = [[], []]
+							linksTargetted[data.links[i].target][index] = [sr[y]]
+						}
+
+						if (
+							combinedLinksTargetted[data.links[i].target] &&
+							Array.isArray(combinedLinksTargetted[data.links[i].target])
+						) {
+							if (!combinedLinksTargetted[data.links[i].target].includes(sr[y])) {
+								combinedLinksTargetted[data.links[i].target].push(sr[y])
+							}
+						} else if (sr[y] != undefined) {
+							combinedLinksTargetted[data.links[i].target] = [sr[y]]
+						}
+					} else if (sr[y] == data.links[i].target) {
+						//SUBREDDIT USED AS TARGET
+						if (!nodesUsed.includes(data.links[i].source)) {
+							//NOT INCLUDED YET? -> ADD TO NODEUSED
+							var node = {
+								id: data.links[i].source,
+								name: data.links[i].source,
+								group: 'Other'
+							}
+							for (var y = 0; y < subreddit_topics.length; y++) {
+								if (
+									data.links[i].source.toLowerCase() ==
+									subreddit_topics[y].SUBREDDIT.toString().toLowerCase()
+								) {
+									node.group = subreddit_topics[y].CATEGORY
+								}
+							}
+							nodesUsed.push(data.links[i].source)
+							nodeArr.push(node)
+						}
+
+						var link = {
+							source: data.links[i].source,
+							target: data.links[i].target
+						}
+
+						linkArr.push(link)
+
+						if (
+							linksTargetted[data.links[i].source] &&
+							linksTargetted[data.links[i].source][index] &&
+							Array.isArray(linksTargetted[data.links[i].source][index])
+						) {
+							if (!linksTargetted[data.links[i].source][index].includes(sr[y])) {
+								linksTargetted[data.links[i].source][index].push(sr[y])
+							}
+						} else if (sr[y] != undefined) {
+							linksTargetted[data.links[i].source] = [[], []]
+							linksTargetted[data.links[i].source][index] = [sr[y]]
+						}
+
+						if (
+							combinedLinksTargetted[data.links[i].source] &&
+							Array.isArray(combinedLinksTargetted[data.links[i].source])
+						) {
+							if (!combinedLinksTargetted[data.links[i].source].includes(sr[y])) {
+								combinedLinksTargetted[data.links[i].source].push(sr[y])
+							}
+						} else if (sr[y] != undefined) {
+							combinedLinksTargetted[data.links[i].source] = [sr[y]]
+						}
+					}
+				}
+			}
+		}
+
+
 	}
 
 	initSearch() {
@@ -61,10 +337,15 @@ class App {
 							}
 
 							selection = selection.filter((v, i, a) => a.indexOf(v) === i);
-							selection = selection.slice(0, 5);
+							selection = selection.slice(0, 15);
 
-							console.log(selection)
+							this.subreddits.push(selection)
 
+							console.log(this.subreddits)
+
+							this.graph = this.initData();
+
+							this.initGraph();
 						})
 						.catch(weird => {
 							console.log('User doest not exist or is not public')
@@ -77,8 +358,6 @@ class App {
 						})
 			}
 		})
-
-
 	}
 
 	initGraph() {
@@ -131,14 +410,14 @@ class App {
 		var link = svg.append("g")
 			.attr("class", "links")
 			.selectAll("line")
-			.data(graph.links)
+			.data(this.graph.links)
 			.enter().append("line")
 			.attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
 		var node = svg.append("g")
 			.attr("class", "nodes")
 			.selectAll("g")
-			.data(graph.nodes)
+			.data(this.graph.nodes)
 			.enter().append("g")
 			.attr("class", function(d) {
 				if (d.followed == 0) {
@@ -154,7 +433,7 @@ class App {
 				.on("drag", dragged)
 				.on("end", dragended))
 
-		// subreddits not followed by any user
+		// this.subreddits not followed by any user
 		var unfollowed_subs = d3.selectAll(".not_followed").append("circle")
 			.attr("r", function(d) { return d.weight * 2})
 			.attr("fill", function(d) { return color(d.group); })
@@ -279,11 +558,11 @@ class App {
 			.text(function(d) { return d.id; });
 
 		simulation
-			.nodes(graph.nodes)
+			.nodes(this.graph.nodes)
 			.on("tick", ticked);
 
 		simulation.force("link")
-			.links(graph.links);
+			.links(this.graph.links);
 
 		function ticked() {
 			link
@@ -318,7 +597,7 @@ class App {
 		}
 
 		const linkedByIndex = {};
-		graph.links.forEach(d => {
+		this.graph.links.forEach(d => {
 			linkedByIndex[`${d.source.index},${d.target.index}`] = 1;
 		});
 
