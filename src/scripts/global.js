@@ -310,9 +310,8 @@ class App {
 
 			if(search.value.length > 0 && search.value.length < 21) {
 				query = search.value;
-				let user = this.r.getUser(query);
 				this.r.getUser(query)
-					.getUpvotedContent().fetchMore({amount: 25})
+					.getOverview().fetchMore({amount: 50})
 						.then(data => {
 							console.log('found userdata')
 							search.classList.add('has-result')
