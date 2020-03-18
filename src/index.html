@@ -14,10 +14,14 @@
 	<script src="https://unpkg.com/d3-3d/build/d3-3d.min.js"></script>
 </head>
 
-<body>
+<body class="single">
 	<div id="searchbox">
 		<input maxlength="20" type="text" id="searchfield" />
-		<button id="submit">Look up username</button>
+		<button id="submit" data-user="0">Look up username</button>
+	</div>
+	<div id="searchbox2">
+		<input maxlength="20" type="text" id="searchfield2" />
+		<button id="submit" data-user="1">Look up username</button>
 	</div>
 	<svg width="960" height="600"></svg>
 

@@ -29,8 +29,8 @@ text {
 
  #searchbox {
  	position: fixed;
- 	top: 5px;
- 	left: 5px;
+ 	top: 50px;
+ 	left: 50px;
 
  	input,
  	button {
@@ -44,4 +44,44 @@ text {
  	input.has-result {
  		border: 1px solid $m-green;
  	}
+}
+
+#searchbox2 {
+	position:fixed;
+	top:50px;
+	right:50px;
+	input,
+ 	button {
+ 		float: left;
+ 	}
+
+ 	input.has-error {
+ 		border: 1px solid $m-red;
+ 	}
+
+ 	input.has-result {
+ 		border: 1px solid $m-green;
+ 	}
+}
+
+
+.single {
+	display: flex;
+    justify-content: center;
+	align-items: center;
+
+	#searchbox {
+		display: flex;
+		flex-direction: column;
+		top:auto;
+		left:auto;
+
+		input {
+			margin-bottom: 5px;
+			padding: 15px;
+		}
+	}
+	#searchbox2 {
+		display:none;
+	}
 }

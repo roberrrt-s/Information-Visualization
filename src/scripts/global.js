@@ -23,15 +23,7 @@ class App {
 		});
 
 		this.subreddits = [
-			// [
-			// 	// 'programmerhumor',
-			// 	// 'leagueoflegends',
-			// 	// 'askscience',
-			// 	// 'explainlikeimfive',
-			// 	// 'moviedetails',
-			// 	// 'dataisbeautiful',
-			// 	// 'outoftheloop',
-			// ]
+			
 		]
 
 		this.initSearch();
@@ -48,7 +40,7 @@ class App {
 		var linksTargetted = []
 		var combinedLinksTargetted = []
 
-		for (var i = 0; i < this.subreddits[0].length; i++) {
+		for (var i = 0; i < 5; i++) {
 			var node = {
 				id: this.subreddits[0][i],
 				name: this.subreddits[0][i],
@@ -59,7 +51,7 @@ class App {
 		}
 
 		if (this.subreddits.length > 1) {
-			for (var i = 0; i < this.subreddits[1].length; i++) {
+			for (var i = 0; i < 5; i++) {
 				var node = {
 					id: this.subreddits[1][i],
 					name: this.subreddits[1][i],
@@ -108,7 +100,8 @@ class App {
 				if (
 					!this.subreddits.includes(linkArr[i].target) &&
 					linksTargetted[linkArr[i].target] != undefined &&
-					linksTargetted[linkArr[i].target].length > 1
+					linksTargetted[linkArr[i].target].length > 0 &&
+					linksTargetted[linkArr[i].target][0].length > 2
 				) {
 					linkUsed.push({
 						source: linkArr[i].source,
@@ -117,7 +110,8 @@ class App {
 				} else if (
 					!this.subreddits.includes(linkArr[i].source) &&
 					linksTargetted[linkArr[i].source] != undefined &&
-					linksTargetted[linkArr[i].source].length > 1
+					linksTargetted[linkArr[i].source].length > 0 &&
+					linksTargetted[linkArr[i].source][0].length > 2
 				) {
 					linkUsed.push({
 						source: linkArr[i].source,
@@ -188,7 +182,7 @@ class App {
 				}
 				node.followed = this.subreddits[0].includes(linkUsed[i].source)
 					? 1
-					: this.subreddits.length > 1 &&  this.subreddits[1].includes(linkUsed[i].source)
+					: this.subreddits.length > 1 && this.subreddits[1].includes(linkUsed[i].source)
 						? 2
 						: 0
 
@@ -318,63 +312,67 @@ class App {
 	}
 
 	initSearch() {
-		const search = document.querySelector('#searchfield');
-		const button = document.querySelector('#submit');
-
+		const button = document.querySelectorAll('#submit');
 		let query;
 
-		button.addEventListener('click', e => {
-			console.log(search.value);
+		for (var i = 0; i < button.length; i++) {
+			button[i].addEventListener('click', e => {
+				var search = e.target.parentNode.querySelector('input');
+				console.log(search.value);
+				document.body.classList.remove('single')
+				var user = e.target.getAttribute('data-user');
 
-			if (search.value.length > 0 && search.value.length < 21) {
-				query = search.value;
-				this.r.getUser(query)
-					.getOverview().fetchMore({ amount: 50 })
-					.then(data => {
-						console.log('found userdata')
-						search.classList.add('has-result')
-						search.classList.remove('has-error');
+				if (search.value.length > 0 && search.value.length < 21) {
+					query = search.value;
+					this.r.getUser(query)
+						.getOverview().fetchMore({ amount: 50 })
+						.then(data => {
+							console.log('found userdata')
+							search.classList.add('has-result')
+							search.classList.remove('has-error');
 
-						let subreddits = [];
-						let selection = [];
+							let subreddits = [];
+							let selection = [];
 
-						for (var i = 0; i < data.length; i++) {
-							subreddits.push(data[i].subreddit_name_prefixed.substr(2));
-						}
-
-
-						let unique = subreddits.filter((v, i, a) => {
-							if (a.indexOf(v) !== i) {
-								selection.push(v)
+							for (var i = 0; i < data.length; i++) {
+								subreddits.push(data[i].subreddit_name_prefixed.substr(2));
 							}
+
+
+							let unique = subreddits.filter((v, i, a) => {
+								if (a.indexOf(v) !== i) {
+									selection.push(v)
+								}
+							})
+
+							if (!selection.length) {
+								selection = unique;
+							}
+
+							selection = selection.filter((v, i, a) => a.indexOf(v) === i);
+							selection = selection.slice(0, 15);
+
+
+							this.subreddits[user] = selection;
+
+							console.log(this.subreddits)
+
+							this.graph = this.initData();
+
+							this.initGraph();
 						})
-
-						if (!selection.length) {
-							selection = unique;
-						}
-
-						selection = selection.filter((v, i, a) => a.indexOf(v) === i);
-						selection = selection.slice(0, 15);
-
-						this.subreddits.push(selection)
-
-						console.log(this.subreddits)
-
-						this.graph = this.initData();
-
-						this.initGraph();
-					})
-					.catch(weird => {
-						console.log('User doest not exist or is not public')
-						search.classList.add('has-error')
-						search.classList.remove('has-result');
-						console.log(weird)
-					})
-					.error(error => {
-						console.log('if we reach this we are doomed')
-					})
-			}
-		})
+						.catch(weird => {
+							console.log('User doest not exist or is not public')
+							search.classList.add('has-error')
+							search.classList.remove('has-result');
+							console.log(weird)
+						})
+						.error(error => {
+							console.log('if we reach this we are doomed')
+						})
+				}
+			})
+		}
 	}
 
 	initGraph() {
