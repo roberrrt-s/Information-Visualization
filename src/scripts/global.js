@@ -23,15 +23,15 @@ class App {
 		});
 
 		this.subreddits = [
-			[
-				'programmerhumor',
-				'leagueoflegends',
-				'askscience',
-				'explainlikeimfive',
-				'moviedetails',
-				'dataisbeautiful',
-				'outoftheloop',
-			]
+			// [
+			// 	// 'programmerhumor',
+			// 	// 'leagueoflegends',
+			// 	// 'askscience',
+			// 	// 'explainlikeimfive',
+			// 	// 'moviedetails',
+			// 	// 'dataisbeautiful',
+			// 	// 'outoftheloop',
+			// ]
 		]
 
 		this.initSearch();
@@ -58,46 +58,73 @@ class App {
 			nodesUsed.push(this.subreddits[0][i])
 		}
 
-		for (var i = 0; i < this.subreddits[1].length; i++) {
-			var node = {
-				id: this.subreddits[0][i],
-				name: this.subreddits[0][i],
-				group: 'user2'
+		if (this.subreddits.length > 1) {
+			for (var i = 0; i < this.subreddits[1].length; i++) {
+				var node = {
+					id: this.subreddits[1][i],
+					name: this.subreddits[1][i],
+					group: 'user2'
+				}
+				nodeArr.push(node)
+				nodesUsed.push(this.subreddits[1][i])
 			}
-			nodeArr.push(node)
-			nodesUsed.push(this.subreddits[1][i])
 		}
 
-		filterSubreddits(datalinks, this.subreddits[0], 0)
-		filterSubreddits(datalinks, this.subreddits[1], 1)
+		compareSubreddits(datalinks, this.subreddits[0], 0)
+		if (this.subreddits.length > 1) {
+			compareSubreddits(datalinks, this.subreddits[1], 1)
+		}
 
 		for (var i = 0; i < linkArr.length; i++) {
-			if (
-				!this.subreddits[0].includes(linkArr[i].target) &&
-				!this.subreddits[1].includes(linkArr[i].target) &&
-				linksTargetted[linkArr[i].target] != undefined &&
-				linksTargetted[linkArr[i].target][0] != undefined &&
-				linksTargetted[linkArr[i].target][0].length > 0 &&
-				linksTargetted[linkArr[i].target][1] != undefined &&
-				linksTargetted[linkArr[i].target][1].length > 0
-			) {
-				linkUsed.push({
-					source: linkArr[i].source,
-					target: linkArr[i].target
-				})
-			} else if (
-				!this.subreddits[0].includes(linkArr[i].source) &&
-				!this.subreddits[1].includes(linkArr[i].source) &&
-				linksTargetted[linkArr[i].source] != undefined &&
-				linksTargetted[linkArr[i].source][0] != undefined &&
-				linksTargetted[linkArr[i].source][0].length > 0 &&
-				linksTargetted[linkArr[i].source][1] != undefined &&
-				linksTargetted[linkArr[i].source][1].length > 0
-			) {
-				linkUsed.push({
-					source: linkArr[i].source,
-					target: linkArr[i].target
-				})
+			if (this.subreddits.length > 1) {
+				if (
+					!this.subreddits[0].includes(linkArr[i].target) &&
+					!this.subreddits[1].includes(linkArr[i].target) &&
+					linksTargetted[linkArr[i].target] != undefined &&
+					linksTargetted[linkArr[i].target][0] != undefined &&
+					linksTargetted[linkArr[i].target][0].length > 0 &&
+					linksTargetted[linkArr[i].target][1] != undefined &&
+					linksTargetted[linkArr[i].target][1].length > 0
+				) {
+					linkUsed.push({
+						source: linkArr[i].source,
+						target: linkArr[i].target
+					})
+				} else if (
+					!this.subreddits[0].includes(linkArr[i].source) &&
+					!this.subreddits[1].includes(linkArr[i].source) &&
+					linksTargetted[linkArr[i].source] != undefined &&
+					linksTargetted[linkArr[i].source][0] != undefined &&
+					linksTargetted[linkArr[i].source][0].length > 0 &&
+					linksTargetted[linkArr[i].source][1] != undefined &&
+					linksTargetted[linkArr[i].source][1].length > 0
+				) {
+					linkUsed.push({
+						source: linkArr[i].source,
+						target: linkArr[i].target
+					})
+				}
+			} else {
+				if (
+					!this.subreddits.includes(linkArr[i].target) &&
+					linksTargetted[linkArr[i].target] != undefined &&
+					linksTargetted[linkArr[i].target].length > 1
+				) {
+					linkUsed.push({
+						source: linkArr[i].source,
+						target: linkArr[i].target
+					})
+				} else if (
+					!this.subreddits.includes(linkArr[i].source) &&
+					linksTargetted[linkArr[i].source] != undefined &&
+					linksTargetted[linkArr[i].source].length > 1
+				) {
+					linkUsed.push({
+						source: linkArr[i].source,
+						target: linkArr[i].target
+					})
+				}
+
 			}
 		}
 
@@ -129,9 +156,9 @@ class App {
 				}
 				node.followed = this.subreddits[0].includes(linkUsed[i].target)
 					? 1
-					: this.subreddits[1].includes(linkUsed[i].target)
-					? 2
-					: 0
+					: this.subreddits.length > 1 && this.subreddits[1].includes(linkUsed[i].target)
+						? 2
+						: 0
 
 				nodes.push(node)
 				nodesUsed.push(linkUsed[i].target)
@@ -161,31 +188,22 @@ class App {
 				}
 				node.followed = this.subreddits[0].includes(linkUsed[i].source)
 					? 1
-					: this.subreddits[1].includes(linkUsed[i].source)
-					? 2
-					: 0
+					: this.subreddits.length > 1 &&  this.subreddits[1].includes(linkUsed[i].source)
+						? 2
+						: 0
 
 				nodes.push(node)
 				nodesUsed.push(linkUsed[i].source)
 			}
 		}
 
-		var rec_subs = nodes
-			.sort(function (a, b) {
-				return b['weight'] - a['weight']
-			})
-			.slice(0, 15)
 
 		return {
 			nodes: nodes,
 			links: linkUsed
 		}
 
-		var recommended_subs = {
-			rec_subs: rec_subs
-		}
-
-		function filterSubreddits (data, sr, index) {
+		function compareSubreddits(data, sr, index) {
 			for (var i = 0; i < data.links.length; i++) {
 				for (var y = 0; y < sr.length; y++) {
 					if (sr[y] == data.links[i].source) {
@@ -308,59 +326,59 @@ class App {
 		button.addEventListener('click', e => {
 			console.log(search.value);
 
-			if(search.value.length > 0 && search.value.length < 21) {
+			if (search.value.length > 0 && search.value.length < 21) {
 				query = search.value;
 				this.r.getUser(query)
-					.getOverview().fetchMore({amount: 50})
-						.then(data => {
-							console.log('found userdata')
-							search.classList.add('has-result')
-							search.classList.remove('has-error');
+					.getOverview().fetchMore({ amount: 50 })
+					.then(data => {
+						console.log('found userdata')
+						search.classList.add('has-result')
+						search.classList.remove('has-error');
 
-							let subreddits = [];
-							let selection = [];
+						let subreddits = [];
+						let selection = [];
 
-							for(var i = 0; i < data.length; i++) {
-								subreddits.push(data[i].subreddit_name_prefixed.substr(2));
+						for (var i = 0; i < data.length; i++) {
+							subreddits.push(data[i].subreddit_name_prefixed.substr(2));
+						}
+
+
+						let unique = subreddits.filter((v, i, a) => {
+							if (a.indexOf(v) !== i) {
+								selection.push(v)
 							}
-
-
-							let unique = subreddits.filter((v, i, a) => {
-								if(a.indexOf(v) !== i) {
-									selection.push(v)
-								}
-							})
-
-							if(!selection.length) {
-								selection = unique;
-							}
-
-							selection = selection.filter((v, i, a) => a.indexOf(v) === i);
-							selection = selection.slice(0, 15);
-
-							this.subreddits.push(selection)
-
-							console.log(this.subreddits)
-
-							this.graph = this.initData();
-
-							this.initGraph();
 						})
-						.catch(weird => {
-							console.log('User doest not exist or is not public')
-							search.classList.add('has-error')
-							search.classList.remove('has-result');
-							console.log(weird)
-						})
-						.error(error => {
-							console.log('if we reach this we are doomed')
-						})
+
+						if (!selection.length) {
+							selection = unique;
+						}
+
+						selection = selection.filter((v, i, a) => a.indexOf(v) === i);
+						selection = selection.slice(0, 15);
+
+						this.subreddits.push(selection)
+
+						console.log(this.subreddits)
+
+						this.graph = this.initData();
+
+						this.initGraph();
+					})
+					.catch(weird => {
+						console.log('User doest not exist or is not public')
+						search.classList.add('has-error')
+						search.classList.remove('has-result');
+						console.log(weird)
+					})
+					.error(error => {
+						console.log('if we reach this we are doomed')
+					})
 			}
 		})
 	}
 
 	initGraph() {
-
+		d3.selectAll("svg > *").remove();
 		document.querySelector('svg').setAttribute('height', window.innerHeight);
 		document.querySelector('svg').setAttribute('width', window.innerWidth);
 
@@ -380,30 +398,30 @@ class App {
 
 		//https://github.com/d3/d3-force USE force/distanceMax etc
 		var simulation = d3.forceSimulation()
-			.force("link", d3.forceLink().id(function(d) { return d.id; }))
+			.force("link", d3.forceLink().id(function (d) { return d.id; }))
 			.force("charge", d3.forceManyBody().strength(-250))
 			.force("center", d3.forceCenter(width / 2, height / 2))
-			.force("x", d3.forceX(function(d){
-				if(d.followed === 1){
-					return width/10
-				} else if (d.followed === 2){
-					return width - (width/10)
+			.force("x", d3.forceX(function (d) {
+				if (d.followed === 1) {
+					return width / 10
+				} else if (d.followed === 2) {
+					return width - (width / 10)
 				} else {
-					return 2*(width/3)
+					return 2 * (width / 3)
 				}
 			})
-			.strength(2))
-			.force("y", d3.forceY(function(d){
-				if(d.weight > 0 && d.followed == 0){
-					return height/d.weight
-				}else{
-					return height / ((Math.random()*10) / 2 + 2)
+				.strength(2))
+			.force("y", d3.forceY(function (d) {
+				if (d.weight > 0 && d.followed == 0) {
+					return height / d.weight
+				} else {
+					return height / ((Math.random() * 10) / 2 + 2)
 				}
 			})
-			.strength(1))
-			.force('collision', d3.forceCollide().radius(function(d) {
+				.strength(1))
+			.force('collision', d3.forceCollide().radius(function (d) {
 				return d.weight * 2 + 10
-			  }));
+			}));
 
 
 		var link = svg.append("g")
@@ -411,14 +429,14 @@ class App {
 			.selectAll("line")
 			.data(this.graph.links)
 			.enter().append("line")
-			.attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+			.attr("stroke-width", function (d) { return Math.sqrt(d.value); });
 
 		var node = svg.append("g")
 			.attr("class", "nodes")
 			.selectAll("g")
 			.data(this.graph.nodes)
 			.enter().append("g")
-			.attr("class", function(d) {
+			.attr("class", function (d) {
 				if (d.followed == 0) {
 					return "not_followed"
 				} else if (d.followed == 1) {
@@ -426,7 +444,7 @@ class App {
 				} else {
 					return "user2"
 				}
-			 })
+			})
 			.call(d3.drag()
 				.on("start", dragstarted)
 				.on("drag", dragged)
@@ -434,127 +452,130 @@ class App {
 
 		// this.subreddits not followed by any user
 		var unfollowed_subs = d3.selectAll(".not_followed").append("circle")
-			.attr("r", function(d) { return d.weight * 2})
-			.attr("fill", function(d) { return color(d.group); })
-				.on('mouseover.fade', fade(0.1))
-				.on("mouseover", function(d){
+			.attr("r", function (d) { return d.weight * 2 })
+			.attr("fill", function (d) { return color(d.group); })
+			.on('mouseover.fade', fade(0.1))
+			.on("mouseover", function (d) {
 
-					node
-						.style("cursor", "pointer")
+				node
+					.style("cursor", "pointer")
 
-					//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
-					//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
-					var weight = '';
-					var links = '';
+				//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+				//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+				var weight = '';
+				var links = '';
 
-					tooltip
-						.style("opacity", 0)
-						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + links)
-						.transition()
-						.duration(130)
-						.style("opacity", 1)
-					})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-70)+"px").style("left",(event.pageX+10)+"px");})
-				.on('mouseout.fade', fade(1))
-				.on("mouseout", function(){
-					tooltip
-						.transition()
-						.duration(130)
-						.style("opacity", 0)
-						.style("cursor", "pointer")
-						;});
+				tooltip
+					.style("opacity", 0)
+					.style("visibility", "visible")
+					.html('Subreddit: ' + '/r/' + d.id + "<br/>" + 'Category: ' + d.group + weight + links)
+					.transition()
+					.duration(130)
+					.style("opacity", 1)
+			})
+			.on("mousemove", function () { return tooltip.style("top", (event.pageY - 70) + "px").style("left", (event.pageX + 10) + "px"); })
+			.on('mouseout.fade', fade(1))
+			.on("mouseout", function () {
+				tooltip
+					.transition()
+					.duration(130)
+					.style("opacity", 0)
+					.style("cursor", "pointer")
+					;
+			});
 
 
 		var user1_subs = d3.selectAll(".user1").append("rect")
-			.attr("x",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
-			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("x", function (d) { return -(d.followed ? 26 : d.weight * 2) / 2 })
+			.attr("y", function (d) { return -(d.followed ? 26 : d.weight * 2) / 2 })
 			.attr("width", 30)
 			.attr("height", 30)
-			.attr("stroke","white")
+			.attr("stroke", "white")
 			.attr("stroke-width", 2.5)
 
-			.attr("fill", function(d) { return color(d.group); })
-				.on('mouseover.fade', fade(0.1))
-				.on("mouseover", function(d){
-					node
-						.style("cursor", "pointer")
+			.attr("fill", function (d) { return color(d.group); })
+			.on('mouseover.fade', fade(0.1))
+			.on("mouseover", function (d) {
+				node
+					.style("cursor", "pointer")
 
-					//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
-					//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
-					var weight = '';
-					var links = '';
+				//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+				//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+				var weight = '';
+				var links = '';
 
-					tooltip
-						.style("opacity", 0)
-						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + links)
-						.transition()
-						.duration(130)
-						.style("opacity", 1)
-					})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-70)+"px").style("left",(event.pageX+10)+"px");})
-				.on('mouseout.fade', fade(1))
-				.on("mouseout", function(){
-					tooltip
-						.transition()
-						.duration(130)
-						.style("opacity", 0)
-						.style("cursor", "pointer")
-						;});
+				tooltip
+					.style("opacity", 0)
+					.style("visibility", "visible")
+					.html('Subreddit: ' + '/r/' + d.id + "<br/>" + 'Category: ' + d.group + weight + links)
+					.transition()
+					.duration(130)
+					.style("opacity", 1)
+			})
+			.on("mousemove", function () { return tooltip.style("top", (event.pageY - 70) + "px").style("left", (event.pageX + 10) + "px"); })
+			.on('mouseout.fade', fade(1))
+			.on("mouseout", function () {
+				tooltip
+					.transition()
+					.duration(130)
+					.style("opacity", 0)
+					.style("cursor", "pointer")
+					;
+			});
 
 		var user2_subs = d3.selectAll(".user2").append("rect")
-			.attr("x",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
-			.attr("y",function(d) { return -(d.followed ?  26 : d.weight * 2) / 2})
+			.attr("x", function (d) { return -(d.followed ? 26 : d.weight * 2) / 2 })
+			.attr("y", function (d) { return -(d.followed ? 26 : d.weight * 2) / 2 })
 			.attr("width", 30)
 			.attr("height", 30)
-			.attr("stroke","white")
+			.attr("stroke", "white")
 			.attr("stroke-width", 2.5)
 
-			.attr("fill", function(d) { return color(d.group); })
-				.on('mouseover.fade', fade(0.1))
-				.on("mouseover", function(d){
-					node
-						.style("cursor", "pointer")
+			.attr("fill", function (d) { return color(d.group); })
+			.on('mouseover.fade', fade(0.1))
+			.on("mouseover", function (d) {
+				node
+					.style("cursor", "pointer")
 
-					//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
-					//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
-					var weight = '';
-					var links = '';
+				//var weight = d.followed != 0 ? '' : "<br/>"  + 'Linked: ' + d.weight;
+				//var links = d.followed != 0 ? '' : "<br/>"  + 'Links: ' + d.links;
+				var weight = '';
+				var links = '';
 
-					tooltip
-						.style("opacity", 0)
-						.style("visibility", "visible")
-						.html('Subreddit: ' + '/r/' + d.id + "<br/>"  + 'Category: ' + d.group + weight + links)
-						.transition()
-						.duration(130)
-						.style("opacity", 1)
-					})
-				.on("mousemove", function(){return tooltip.style("top", (event.pageY-70)+"px").style("left",(event.pageX+10)+"px");})
-				.on('mouseout.fade', fade(1))
-				.on("mouseout", function(){
-					tooltip
-						.transition()
-						.duration(130)
-						.style("opacity", 0)
-						.style("cursor", "pointer")
-						;});
+				tooltip
+					.style("opacity", 0)
+					.style("visibility", "visible")
+					.html('Subreddit: ' + '/r/' + d.id + "<br/>" + 'Category: ' + d.group + weight + links)
+					.transition()
+					.duration(130)
+					.style("opacity", 1)
+			})
+			.on("mousemove", function () { return tooltip.style("top", (event.pageY - 70) + "px").style("left", (event.pageX + 10) + "px"); })
+			.on('mouseout.fade', fade(1))
+			.on("mouseout", function () {
+				tooltip
+					.transition()
+					.duration(130)
+					.style("opacity", 0)
+					.style("cursor", "pointer")
+					;
+			});
 
 
 		var lables = node.append("text")
-			.text(function(d) {
+			.text(function (d) {
 				return d.id;
 			})
-			.attr('x', function(d){
+			.attr('x', function (d) {
 				return (d.weight * 2)
 			})
-			.attr('y', function(d){
+			.attr('y', function (d) {
 				return -(d.weight * 2) + 5
 			})
 			.style('background-color', 'white');
 
 		node.append("title")
-			.text(function(d) { return d.id; });
+			.text(function (d) { return d.id; });
 
 		simulation
 			.nodes(this.graph.nodes)
@@ -565,23 +586,23 @@ class App {
 
 		function ticked() {
 			link
-				.attr("x1", function(d) { return d.source.x; })
-				.attr("y1", function(d) { return d.source.y; })
-				.attr("x2", function(d) { return d.target.x; })
-				.attr("y2", function(d) { return d.target.y; });
+				.attr("x1", function (d) { return d.source.x; })
+				.attr("y1", function (d) { return d.source.y; })
+				.attr("x2", function (d) { return d.target.x; })
+				.attr("y2", function (d) { return d.target.y; });
 
 			node
-				.attr("transform", function(d) {
+				.attr("transform", function (d) {
 					return "translate(" + d.x + "," + d.y + ")";
 				})
-				.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
-				.attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
+				.attr("cx", function (d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+				.attr("cy", function (d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
 		}
 
 		function dragstarted(d) {
 			if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-				d.fx = d.x;
-				d.fy = d.y;
+			d.fx = d.x;
+			d.fy = d.y;
 		}
 
 		function dragged(d) {
@@ -591,8 +612,8 @@ class App {
 
 		function dragended(d) {
 			if (!d3.event.active) simulation.alphaTarget(0);
-				d.fx = null;
-				d.fy = null;
+			d.fx = null;
+			d.fy = null;
 		}
 
 		const linkedByIndex = {};
