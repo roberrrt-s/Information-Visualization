@@ -23,7 +23,7 @@ class App {
 		});
 
 		this.subreddits = [
-			
+
 		]
 
 		this.initSearch();
@@ -57,8 +57,12 @@ class App {
 					name: this.subreddits[1][i],
 					group: 'user2'
 				}
-				nodeArr.push(node)
-				nodesUsed.push(this.subreddits[1][i])
+				if (!nodesUsed.includes(this.subreddits[1][i])) {
+					nodeArr.push(node)
+					nodesUsed.push(this.subreddits[1][i])
+				} else {
+					this.subreddits[1].splice(i, 1);
+				}
 			}
 		}
 
@@ -78,6 +82,10 @@ class App {
 					linksTargetted[linkArr[i].target][1] != undefined &&
 					linksTargetted[linkArr[i].target][1].length > 0
 				) {
+					if (linkArr[i].target == 'suomi') {
+
+						console.log(linksTargetted[linkArr[i].target][1], linksTargetted[linkArr[i].target][0])
+					}
 					linkUsed.push({
 						source: linkArr[i].source,
 						target: linkArr[i].target
@@ -91,6 +99,10 @@ class App {
 					linksTargetted[linkArr[i].source][1] != undefined &&
 					linksTargetted[linkArr[i].source][1].length > 0
 				) {
+					if (linkArr[i].source == 'suomi') {
+						console.log(linksTargetted[linkArr[i].source][1], linksTargetted[linkArr[i].source][0])
+					}
+
 					linkUsed.push({
 						source: linkArr[i].source,
 						target: linkArr[i].target
