@@ -1,5 +1,20 @@
 @import 'variables';
 
+@keyframes fadeOutRedBorder {
+  from {border-color: $m-red;}
+  to {border-color: #FFFFFF;}
+}
+
+@keyframes fadeOutGreenBorder {
+  from {border-color: $m-green;}
+  to {border-color: #FFFFFF;}
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
 .links line {
 	stroke: #999;
 	stroke-opacity: 0.6;
@@ -27,41 +42,42 @@ text {
 	color:#fff;
 }
 
- #searchbox {
+input.has-error {
+	border: 1px solid $m-red !important;
+	animation: fadeOutRedBorder 3s linear 3s;
+}
+
+input.has-result {
+	border: 1px solid $m-green !important;
+	animation: fadeOutGreenBorder 3s linear 3s;
+}
+
+#searchbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
  	position: fixed;
- 	top: 50px;
- 	left: 50px;
 
- 	input,
- 	button {
- 		float: left;
- 	}
+	input {
+ 		&::placeholder {
+ 			color: #EEEEEE;
+ 		}
 
- 	input.has-error {
- 		border: 1px solid $m-red;
- 	}
-
- 	input.has-result {
- 		border: 1px solid $m-green;
+ 		&:focus {
+ 			outline: 0;
+ 		}
  	}
 }
 
 #searchbox2 {
 	position:fixed;
-	top:50px;
-	right:50px;
+	top: 0px;
+	right :0px;
+
 	input,
- 	button {
- 		float: left;
- 	}
-
- 	input.has-error {
- 		border: 1px solid $m-red;
- 	}
-
- 	input.has-result {
- 		border: 1px solid $m-green;
- 	}
+	button {
+		float: left;
+	}
 }
 
 
@@ -73,13 +89,22 @@ text {
 	#searchbox {
 		display: flex;
 		flex-direction: column;
-		top:auto;
-		left:auto;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		right: 0;
 
 		input {
-			margin-bottom: 5px;
-			padding: 15px;
-		}
+	  		font-size: 5rem;
+	 		width: 30vw;
+	 		height: 15vh;
+	 		border: 0px;
+	 		text-align: center;
+	 	}
+
+	 	button {
+	 		display: none;
+	 	}
 	}
 	#searchbox2 {
 		display:none;

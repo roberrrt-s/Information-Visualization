@@ -327,6 +327,16 @@ class App {
 		const button = document.querySelectorAll('#submit');
 		let query;
 
+		let inputs = document.querySelectorAll('input[type=text]')
+
+		for(var i = 0; i < inputs.length; i++) {
+			inputs[i].addEventListener('keydown', e => {
+				if(e.which === 13) {
+					e.target.parentNode.querySelector('button').click();
+				}
+			})
+		}
+
 		for (var i = 0; i < button.length; i++) {
 			button[i].addEventListener('click', e => {
 				var search = e.target.parentNode.querySelector('input');
